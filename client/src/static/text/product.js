@@ -1,4 +1,4 @@
-const about_content = [
+const overview_content = [
   {
     title: 'Title 1',
     paragraph:
@@ -16,4 +16,4 @@ const about_content = [
   },
 ];
 
-export default about_content;
+export default overview_content;
