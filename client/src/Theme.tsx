@@ -5,7 +5,8 @@ const theme = {
     // TODO: get finalized color scheme from Randa
     black: '#000000',
     backgroundGrey: '#afafaf',
-    primaryPink: '#f08080',
+    textGrey: '#19191b',
+    primaryPink: '#e02783',
     secondaryGreen: '#81b29a',
     catastrophic: 'e76f51',
     considerable: '#f4a261',
@@ -16,7 +17,7 @@ const theme = {
   fonts: {
     // TODO: get real fonts from Randa
     heading: 'Poppins, sans-serif',
-    content: 'Source Sans Pro, sans-serif',
+    content: 'Arial, sans-serif;',
   },
   fontSizes: {
     small: '1em',

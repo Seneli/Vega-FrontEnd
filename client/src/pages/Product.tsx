@@ -16,10 +16,10 @@ const Product = () => {
     </>
   );
 };
+
 const PageHeader = styled.h1`
   font-size: 80px;
   line-height: 84px;
-  /* margin-bottom: 30px; */
   margin: 0;
   padding: 100px;
   font-weight: 700;
@@ -32,13 +32,16 @@ const PageHeader = styled.h1`
 `;
 
 const PageBody = styled.div`
-  padding: 20px 100px;
+  padding: 20px 100px 0 100px;
 `;
 
 const Subtitle = styled.h2`
   color: ${(props) => props.theme.colors.primaryPink};
 `;
 
-const Paragraph = styled.p``;
+const Paragraph = styled.p`
+  color: ${(props) => props.theme.colors.textGrey};
+  line-height: 20px;
+`;
 
 export default Product;
