@@ -7,6 +7,7 @@ interface NavbarProps {
 
 const Navbar = ({ links }: NavbarProps) => (
   <StyledNavbar>
+    <NavbarLogo>*insert logo* Vega</NavbarLogo>
     <StyledNavbarList>
       {links.map((link) => (
         <StyledNavbarLink key={`l-${link}`}>
@@ -22,28 +23,37 @@ const StyledNavbar = styled.div`
   color: ${(props) => props.theme.colors.black};
   font-size: ${(props) => props.theme.fontSizes.small};
   font-family: ${(props) => props.theme.fonts.heading};
-  width: 100%;
   z-index: 1;
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  padding: 20px;
+  padding: 20px 100px;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+const NavbarLogo = styled.div`
+  color: ${(props) => props.theme.colors.insignificant};
+  font-weight: bold;
 `;
 
 const StyledNavbarList = styled.div`
   display: flex;
   flex-direction: row;
   gap: 3vw;
-  margin-right: 50px;
 `;
 
 const StyledNavbarLink = styled.div`
   a {
     text-decoration: none;
     color: ${(props) => props.theme.colors.insignificant};
+    transition: 0.5s;
+    font-weight: bold;
   }
   a:hover {
-    color: #ffffff;
+    color: ${(props) => props.theme.colors.moderate};
   }
 `;
 
