@@ -1,7 +1,11 @@
+import { useState } from 'react';
 import styled from 'styled-components';
+
 import content from 'static/mock/dashboard';
+import { View, Column, Risk } from 'static/enums/dashboard';
 
 import QuickStats from 'components/QuickStats';
+import ViewButtons from 'components/ViewButtons';
 
 interface DashboardProps {
   members?: {
@@ -13,12 +17,27 @@ interface DashboardProps {
 }
 
 const Dashboard = (props: DashboardProps) => {
+  const [view, setView] = useState<View>(View.Component);
+  const [sortBy, setSortBy] = useState<Column>(
+    Column.ConsolidatedHEATRiskScore
+  );
+  const [filterBy, setFilterBy] = useState<Risk>(Risk.None);
+  const [shownColumns, setShownColumns] = useState<Column[]>([]);
+
   return (
     <>
       <PageBody>
         <SectionHeading>Quick Stats</SectionHeading>
         <QuickStats stats={content.stats} />
-        {/* {content.stats.map((content, index) => {
+        <DashboardGrid>
+          <SectionHeading>
+            List of Components and Vulnerabilities
+          </SectionHeading>
+          <ViewButtons view={view} setView={setView} />
+          <SearchAndFilterBar />
+          <ShowInfoAndExport />
+          <DashboardTable />
+          {/* {content.stats.map((content, index) => {
           return (
             <PageBody>
               <Subtitle>{content.title}</Subtitle>
@@ -26,14 +45,6 @@ const Dashboard = (props: DashboardProps) => {
             </PageBody>
           );
         })} */}
-        <DashboardGrid>
-          <SectionHeading>
-            List of Components and Vulnerabilities
-          </SectionHeading>
-          <ViewButtons />
-          <SearchAndFilterBar />
-          <ShowInfoAndExport />
-          <DashboardTable />
         </DashboardGrid>
       </PageBody>
     </>
@@ -41,7 +52,7 @@ const Dashboard = (props: DashboardProps) => {
 };
 
 const PageBody = styled.div`
-  padding: 20px 100px 0 100px;
+  padding: 20px 10vw 0 10vw;
 `;
 
 const DashboardGrid = styled.div`
@@ -53,28 +64,22 @@ const DashboardGrid = styled.div`
     'SearchBar OptionButtons'
     'Dashboard Dashboard';
   grid-gap: 15px;
+
+  //INSERT RESIZE FOR TABLET SIZE HERE - ASK RANDA
   @media ${(props) => props.theme.viewport.tablet} {
-    grid-template-areas:
-      'SectionHeading ViewToggle'
-      'SearchBar OptionButtons'
-      'Dashboard Dashboard';
-    grid-gap: 15px;
   }
+
+  //INSERT RESIZE FOR MOBILE SIZE HERE - ASK RANDA
   @media ${(props) => props.theme.viewport.mobile} {
-    grid-template-areas:
-      'SectionHeading ViewToggle'
-      'SearchBar OptionButtons'
-      'Dashboard Dashboard';
-    grid-gap: 15px;
   }
 `;
 
 const SectionHeading = styled.h2``;
 
-const ViewButtons = styled.div`
-  background-color: red;
-  grid-area: ViewToggle;
-`;
+// const ViewButtons = styled.div`
+//   background-color: red;
+//   grid-area: ViewToggle;
+// `;
 
 const SearchAndFilterBar = styled.div`
   background-color: blue;
