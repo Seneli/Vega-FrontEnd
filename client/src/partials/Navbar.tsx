@@ -53,7 +53,7 @@ const StyledNavbarLink = styled.div`
     font-weight: bold;
   }
   a:hover {
-    color: ${(props) => props.theme.colors.moderate};
+    color: ${(props) => props.theme.colors.minor};
   }
 `;
 
