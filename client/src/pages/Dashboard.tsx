@@ -6,7 +6,7 @@ import { View, Column, Risk } from 'static/enums/dashboard';
 
 import QuickStats from 'components/QuickStats';
 import ViewButtons from 'components/ViewButtons';
-import SearchAndFilterBar from 'components/SearchAndFilterBar';
+import SearchAndFilterBar from 'components/SearchAndFilter';
 
 interface DashboardProps {
   members?: {
@@ -23,7 +23,7 @@ const Dashboard = (props: DashboardProps) => {
     Column.ConsolidatedHEATRiskScore
   );
   const [searchBy, setSearchBy] = useState<string>('');
-  const [filterBy, setFilterBy] = useState<Risk[]>([]);
+  const [filterList, setFilterList] = useState<Risk[]>([]);
   const [shownColumns, setShownColumns] = useState<Column[]>([]);
 
   return (
@@ -37,11 +37,11 @@ const Dashboard = (props: DashboardProps) => {
           </SectionHeading>
           <ViewButtons view={view} setView={setView} />
           <SearchAndFilterBar
-            checkedList={filterBy}
-            setCheckedList={setFilterBy}
+            filterList={filterList}
+            setFilterList={setFilterList}
           />
           <div>
-            Selected filters: {filterBy.length ? filterBy.join(', ') : null}
+            Selected filters: {filterList.length ? filterList.join(', ') : null}
           </div>
           <ShowInfoAndExport />
           <DashboardTable />
