@@ -21,20 +21,29 @@ const CheckboxDropdownButton = ({
   const [dropdownStatus, setDropdownStatus] = useState<boolean>(false);
 
   return (
-    <PopupWrapper>
-      <Badge count={checkedList.length}>
-        <div onClick={() => setDropdownStatus(!dropdownStatus)}>{children}</div>
-      </Badge>
+    <Container>
+      <PopupWrapper>
+        <Badge count={checkedList.length}>
+          <div onClick={() => setDropdownStatus(!dropdownStatus)}>
+            {children}
+          </div>
+        </Badge>
 
-      <Popup dropdownStatus={dropdownStatus}>
-        <CheckboxList
-          checkboxOptions={checkboxOptions}
-          setCheckedList={setCheckedList}
-        />
-      </Popup>
-    </PopupWrapper>
+        <Popup dropdownStatus={dropdownStatus}>
+          <CheckboxList
+            checkboxOptions={checkboxOptions}
+            setCheckedList={setCheckedList}
+          />
+        </Popup>
+      </PopupWrapper>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  display:flex;
+  direction: column;
+`;
 
 const PopupWrapper = styled.div`
   border: 1px solid red;

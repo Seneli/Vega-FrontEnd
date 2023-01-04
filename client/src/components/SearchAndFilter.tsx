@@ -46,8 +46,6 @@ const SearchAndFilter = ({
 const Container = styled.div`
   background-color: blue;
   grid-area: SearchBar;
-  display: flex;
-  flex-direction: column;
 `;
 
 const SearchBar = styled(Input.Search)`

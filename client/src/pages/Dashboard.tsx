@@ -7,6 +7,7 @@ import { View, Column, Risk } from 'static/enums/dashboard';
 import QuickStats from 'components/QuickStats';
 import ViewButtons from 'components/ViewButtons';
 import SearchAndFilterBar from 'components/SearchAndFilter';
+import ShowInfoAndExport from 'components/ShowInfoAndExport';
 
 interface DashboardProps {
   members?: {
@@ -43,7 +44,10 @@ const Dashboard = (props: DashboardProps) => {
           <div>
             Selected filters: {filterList.length ? filterList.join(', ') : null}
           </div>
-          <ShowInfoAndExport />
+          <ShowInfoAndExport
+            shownColumns={shownColumns}
+            setShownColumns={setShownColumns}
+          />
           <DashboardTable />
         </DashboardGrid>
       </PageBody>
@@ -76,12 +80,12 @@ const DashboardGrid = styled.div`
 
 const SectionHeading = styled.h2``;
 
-const ShowInfoAndExport = styled.div`
-  background-color: green;
-  grid-area: OptionButtons;
-  width: 100%;
-  height: 50px;
-`;
+// const ShowInfoAndExport = styled.div`
+//   background-color: green;
+//   grid-area: OptionButtons;
+//   width: 100%;
+//   height: 50px;
+// `;
 
 const DashboardTable = styled.div`
   background-color: orange;
