@@ -6,6 +6,7 @@ import { View, Column, Risk } from 'static/enums/dashboard';
 
 import QuickStats from 'components/QuickStats';
 import ViewButtons from 'components/ViewButtons';
+import SearchAndFilterBar from 'components/SearchAndFilterBar';
 
 interface DashboardProps {
   members?: {
@@ -21,7 +22,8 @@ const Dashboard = (props: DashboardProps) => {
   const [sortBy, setSortBy] = useState<Column>(
     Column.ConsolidatedHEATRiskScore
   );
-  const [filterBy, setFilterBy] = useState<Risk>(Risk.None);
+  const [searchBy, setSearchBy] = useState<string>('');
+  const [filterBy, setFilterBy] = useState<Risk[]>([]);
   const [shownColumns, setShownColumns] = useState<Column[]>([]);
 
   return (
@@ -34,17 +36,15 @@ const Dashboard = (props: DashboardProps) => {
             List of Components and Vulnerabilities
           </SectionHeading>
           <ViewButtons view={view} setView={setView} />
-          <SearchAndFilterBar />
+          <SearchAndFilterBar
+            checkedList={filterBy}
+            setCheckedList={setFilterBy}
+          />
+          <div>
+            Selected filters: {filterBy.length ? filterBy.join(', ') : null}
+          </div>
           <ShowInfoAndExport />
           <DashboardTable />
-          {/* {content.stats.map((content, index) => {
-          return (
-            <PageBody>
-              <Subtitle>{content.title}</Subtitle>
-              <Paragraph>{content.paragraph}</Paragraph>
-            </PageBody>
-          );
-        })} */}
         </DashboardGrid>
       </PageBody>
     </>
@@ -75,18 +75,6 @@ const DashboardGrid = styled.div`
 `;
 
 const SectionHeading = styled.h2``;
-
-// const ViewButtons = styled.div`
-//   background-color: red;
-//   grid-area: ViewToggle;
-// `;
-
-const SearchAndFilterBar = styled.div`
-  background-color: blue;
-  grid-area: SearchBar;
-  width: 100%;
-  height: 50px;
-`;
 
 const ShowInfoAndExport = styled.div`
   background-color: green;

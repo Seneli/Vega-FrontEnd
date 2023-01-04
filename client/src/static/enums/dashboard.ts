@@ -21,7 +21,6 @@ enum Risk {
   Moderate,
   Minor,
   Insignificant,
-  None,
 }
 
 export { View, Column, Risk };
