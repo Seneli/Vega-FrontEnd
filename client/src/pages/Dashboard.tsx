@@ -2,12 +2,16 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 import content from 'static/mock/dashboard';
-import { View, Column, Risk } from 'static/enums/dashboard';
+import { View, VulnerabilityViewColumn, Risk } from 'helpers/enums/dashboard';
 
 import QuickStats from 'components/QuickStats';
 import ViewButtons from 'components/ViewButtons';
 import SearchAndFilterBar from 'components/SearchAndFilter';
 import ShowInfoAndExport from 'components/ShowInfoAndExport';
+import PaginatedTable from 'components/PaginatedTable';
+
+//TODO: GET THE DATA FROM AN API CALL LATER ON - HAVE IT HANDLED BY A FUNCTION THAT'S REFERENCED IN THIS COMPONENT
+import mockData from 'static/mock/dashboard';
 
 interface DashboardProps {
   members?: {
@@ -20,12 +24,18 @@ interface DashboardProps {
 
 const Dashboard = (props: DashboardProps) => {
   const [view, setView] = useState<View>(View.Component);
-  const [sortBy, setSortBy] = useState<Column>(
-    Column.ConsolidatedHEATRiskScore
-  );
   const [searchBy, setSearchBy] = useState<string>('');
   const [filterList, setFilterList] = useState<Risk[]>([]);
-  const [shownColumns, setShownColumns] = useState<Column[]>([]);
+  const [shownColumns, setShownColumns] = useState<VulnerabilityViewColumn[]>([
+    VulnerabilityViewColumn.CVEID,
+    VulnerabilityViewColumn.VulnerabilityDescription,
+    VulnerabilityViewColumn.CWEName,
+    VulnerabilityViewColumn.ComponentName,
+    VulnerabilityViewColumn.ComponentHEATRisk,
+  ]);
+  const [sortBy, setSortBy] = useState<VulnerabilityViewColumn>(
+    VulnerabilityViewColumn.CVSSSeverity
+  );
 
   return (
     <>
@@ -41,14 +51,16 @@ const Dashboard = (props: DashboardProps) => {
             filterList={filterList}
             setFilterList={setFilterList}
           />
-          <div>
-            Selected filters: {filterList.length ? filterList.join(', ') : null}
-          </div>
           <ShowInfoAndExport
             shownColumns={shownColumns}
             setShownColumns={setShownColumns}
           />
-          <DashboardTable />
+          <PaginatedTable
+            sortBy={sortBy}
+            setSortBy={setSortBy}
+            shownColumns={shownColumns}
+            data={mockData.vulnerabilityList}
+          />
         </DashboardGrid>
       </PageBody>
     </>
@@ -62,11 +74,11 @@ const PageBody = styled.div`
 const DashboardGrid = styled.div`
   margin: 30px 0;
   display: grid;
-  grid-template-columns: 60vw 20vw;
+  /* grid-template-columns: 60% 40%; */
   grid-template-areas:
-    'SectionHeading ViewToggle'
-    'SearchBar OptionButtons'
-    'Dashboard Dashboard';
+    'SectionHeading ViewButtons'
+    'SearchAndFilter ShowInfoAndExport'
+    'PaginatedTable PaginatedTable';
   grid-gap: 15px;
 
   //INSERT RESIZE FOR TABLET SIZE HERE - ASK RANDA
@@ -79,20 +91,5 @@ const DashboardGrid = styled.div`
 `;
 
 const SectionHeading = styled.h2``;
-
-// const ShowInfoAndExport = styled.div`
-//   background-color: green;
-//   grid-area: OptionButtons;
-//   width: 100%;
-//   height: 50px;
-// `;
-
-const DashboardTable = styled.div`
-  background-color: orange;
-  grid-area: OptionButtons;
-  width: 100%;
-  height: 500px;
-  grid-area: Dashboard;
-`;
 
 export default Dashboard;

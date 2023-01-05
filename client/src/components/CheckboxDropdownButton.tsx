@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { Badge } from 'antd';
-import { Column, Risk } from 'static/enums/dashboard';
+import { VulnerabilityViewColumn, Risk } from 'helpers/enums/dashboard';
 
 import CheckboxList from 'components/CheckboxList';
 
 interface CheckboxDropdownButtonProps {
   checkboxOptions: string[];
-  checkedList: Risk[] | Column[];
+  checkedList: Risk[] | VulnerabilityViewColumn[];
   setCheckedList: Function;
   children: JSX.Element;
 }
@@ -41,12 +41,11 @@ const CheckboxDropdownButton = ({
 };
 
 const Container = styled.div`
-  display:flex;
+  display: flex;
   direction: column;
 `;
 
 const PopupWrapper = styled.div`
-  border: 1px solid red;
   padding: 1px;
   position: static;
   display: inline-block;

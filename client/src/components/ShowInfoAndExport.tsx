@@ -2,16 +2,16 @@ import styled from 'styled-components';
 import { Button } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
-import { Column } from 'static/enums/dashboard';
+import { VulnerabilityViewColumn } from 'helpers/enums/dashboard';
 
 import CheckboxDropdownButton from 'components/CheckboxDropdownButton';
 
-const columnOptions = Object.keys(Column).filter((item) => {
+const columnOptions = Object.keys(VulnerabilityViewColumn).filter((item) => {
   return isNaN(Number(item));
 });
 
 interface ShowInfoAndExportProps {
-  shownColumns: Column[];
+  shownColumns: VulnerabilityViewColumn[];
   setShownColumns: Function;
 }
 
@@ -41,8 +41,7 @@ const ShowInfoAndExport = ({
 };
 
 const Container = styled.div`
-  background-color: green;
-  grid-area: OptionButtons;
+  grid-area: ShowInfoAndExport;
 
   display: flex;
   flex-direction: column;

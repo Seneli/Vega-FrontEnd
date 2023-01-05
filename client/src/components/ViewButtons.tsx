@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { View } from 'static/enums/dashboard';
+import { Button } from 'antd';
+import { View } from 'helpers/enums/dashboard';
 
 interface ViewButtonsProps {
   view: View;
@@ -29,8 +30,7 @@ const ViewButtons = ({ view, setView }: ViewButtonsProps) => {
 };
 
 const ViewButtonsDiv = styled.div`
-  background-color: red;
-  grid-area: ViewToggle;
+  grid-area: ViewButtons;
 `;
 
 const ViewLabel = styled.label``;
@@ -40,9 +40,13 @@ interface ButtonProps {
   option: View;
 }
 
-const ViewButton = styled.button<ButtonProps>`
+const ViewButton = styled(Button)<ButtonProps>`
   background-color: ${(props) =>
-    (props.view === props.option && 'orange') || 'blue'};
+    (props.view === props.option && props.theme.colors.primaryPink) ||
+    props.theme.colors.white};
+    &:hover{
+      margin-top: 2px;
+    }
 `;
 
 export default ViewButtons;

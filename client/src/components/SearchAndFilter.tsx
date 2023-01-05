@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Input, Button } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
-import { Risk } from 'static/enums/dashboard';
+import { Risk } from 'helpers/enums/dashboard';
 
 import CheckboxDropdownButton from 'components/CheckboxDropdownButton';
 
@@ -44,12 +44,11 @@ const SearchAndFilter = ({
 };
 
 const Container = styled.div`
-  background-color: blue;
-  grid-area: SearchBar;
+  grid-area: SearchAndFilter;
 `;
 
 const SearchBar = styled(Input.Search)`
-  /* width: 30%; */
+  width: 50%;
 `;
 
 const DropdownButton = styled(Button)`
