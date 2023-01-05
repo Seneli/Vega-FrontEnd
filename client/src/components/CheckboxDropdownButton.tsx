@@ -58,10 +58,11 @@ interface FilterByInterface {
 const Popup = styled.div<FilterByInterface>`
   z-index: 3;
   background-color: white;
-  padding: 5px;
+  padding: 5px 20px 10px 10px;
   height: auto;
   max-height: 350px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  box-shadow: 2px 2px 10px 2px #00000062;
   position: absolute;
   display: ${(props) => (props.dropdownStatus ? 'inherit' : 'none')};
 `;

@@ -51,11 +51,23 @@ const SearchBar = styled(Input.Search)`
   width: 50%;
 `;
 
-const DropdownButton = styled(Button)`
+const DropdownButton = styled.button`
+  border: none;
+  border-radius: 7px;
   background-color: ${(props) => props.theme.colors.primaryPink};
   color: white;
   text-align: left;
   padding: 10px 20px;
+  display: flex;
+  justify-content: space-around;
+  width: 120px;
+  height: 40px;
+  align-items: baseline;
+
+  &:hover {
+    margin-top: 2px;
+    box-shadow: 0 0 3px 1px ${(props) => props.theme.colors.backgroundGrey};
+  }
 `;
 
 export default SearchAndFilter;

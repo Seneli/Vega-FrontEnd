@@ -38,43 +38,40 @@ const Dashboard = (props: DashboardProps) => {
   );
 
   return (
-    <>
-      <PageBody>
-        <SectionHeading>Quick Stats</SectionHeading>
-        <QuickStats stats={content.stats} />
-        <DashboardGrid>
-          <SectionHeading>
-            List of Components and Vulnerabilities
-          </SectionHeading>
-          <ViewButtons view={view} setView={setView} />
-          <SearchAndFilterBar
-            filterList={filterList}
-            setFilterList={setFilterList}
-          />
-          <ShowInfoAndExport
-            shownColumns={shownColumns}
-            setShownColumns={setShownColumns}
-          />
-          <PaginatedTable
-            sortBy={sortBy}
-            setSortBy={setSortBy}
-            shownColumns={shownColumns}
-            data={mockData.vulnerabilityList}
-          />
-        </DashboardGrid>
-      </PageBody>
-    </>
+    <PageBody>
+      <SectionHeading>Quick Stats</SectionHeading>
+      <QuickStats stats={content.stats} />
+      <DashboardGrid>
+        <SectionHeading>List of Components and Vulnerabilities</SectionHeading>
+        <ViewButtons view={view} setView={setView} />
+        <SearchAndFilterBar
+          filterList={filterList}
+          setFilterList={setFilterList}
+        />
+        <ShowInfoAndExport
+          shownColumns={shownColumns}
+          setShownColumns={setShownColumns}
+        />
+        <PaginatedTable
+          sortBy={sortBy}
+          setSortBy={setSortBy}
+          shownColumns={shownColumns}
+          data={mockData.vulnerabilityList}
+        />
+      </DashboardGrid>
+    </PageBody>
   );
 };
 
 const PageBody = styled.div`
   padding: 20px 10vw 0 10vw;
+  margin: auto;
+  max-width: 1000px;
 `;
 
 const DashboardGrid = styled.div`
   margin: 30px 0;
   display: grid;
-  /* grid-template-columns: 60% 40%; */
   grid-template-areas:
     'SectionHeading ViewButtons'
     'SearchAndFilter ShowInfoAndExport'

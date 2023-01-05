@@ -31,6 +31,13 @@ const ViewButtons = ({ view, setView }: ViewButtonsProps) => {
 
 const ViewButtonsDiv = styled.div`
   grid-area: ViewButtons;
+  max-width: 400px;
+  display: flex;
+  gap: 15px;
+  flex-direction: row;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  align-items: center;
 `;
 
 const ViewLabel = styled.label``;
@@ -44,9 +51,18 @@ const ViewButton = styled(Button)<ButtonProps>`
   background-color: ${(props) =>
     (props.view === props.option && props.theme.colors.primaryPink) ||
     props.theme.colors.white};
-    &:hover{
-      margin-top: 2px;
-    }
+  color: ${(props) =>
+    (props.view === props.option && '#fff') || props.theme.colors.textGrey};
+  & > * {
+    color: ${(props) =>
+      (props.view === props.option && '#fff') || props.theme.colors.textGrey};
+  }
+
+  &:hover {
+    margin-top: 5px;
+    box-shadow: 0 0 3px 1px ${(props) => props.theme.colors.backgroundGrey};
+    border: none;
+  }
 `;
 
 export default ViewButtons;

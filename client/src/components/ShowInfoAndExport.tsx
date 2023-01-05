@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { Button } from 'antd';
+import { useContext } from 'react';
+import { ThemeContext } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { VulnerabilityViewColumn } from 'helpers/enums/dashboard';
@@ -19,6 +20,7 @@ const ShowInfoAndExport = ({
   shownColumns,
   setShownColumns,
 }: ShowInfoAndExportProps) => {
+  const themeContext = useContext(ThemeContext);
   return (
     <Container>
       <CheckboxDropdownButton
@@ -26,39 +28,50 @@ const ShowInfoAndExport = ({
         checkedList={shownColumns}
         setCheckedList={setShownColumns}
       >
-        <ShowOtherInfoButton>
+        <OptionButton color={themeContext.colors.primaryPink} width={'170px'}>
           <FontAwesomeIcon icon={icon({ name: 'sliders' })} />
           Show Other Info
-        </ShowOtherInfoButton>
+        </OptionButton>
       </CheckboxDropdownButton>
 
-      <ExportButton>
+      <OptionButton color={themeContext.colors.minor} width={'130px'}>
         <FontAwesomeIcon icon={icon({ name: 'file-export' })} />
         Export
-      </ExportButton>
+      </OptionButton>
     </Container>
   );
 };
 
 const Container = styled.div`
   grid-area: ShowInfoAndExport;
-
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: flex-end;
 `;
 
-const ShowOtherInfoButton = styled(Button)`
-  border: 2px solid ${(props) => props.theme.colors.primaryPink};
-  color: ${(props) => props.theme.colors.primaryPink};
-  text-align: left;
-  padding: 10px 20px;
-`;
+interface OptionButtonProps {
+  color: string;
+  width: string;
+}
 
-const ExportButton = styled(Button)`
-  border: 2px solid ${(props) => props.theme.colors.minor};
-  color: ${(props) => props.theme.colors.minor};
+const OptionButton = styled.button<OptionButtonProps>`
+  border: 2px solid ${(props) => props.color};
+  border-radius: 7px;
+  background-color: #fff;
+  color: ${(props) => props.color};
   text-align: left;
   padding: 10px 20px;
+  display: flex;
+  justify-content: space-around;
+  width: ${(props) => props.width};
+  height: 40px;
+
+  &:hover {
+    margin-top: 2px;
+    box-shadow: 0 0 3px 1px ${(props) => props.theme.colors.backgroundGrey};
+  }
 `;
 
 export default ShowInfoAndExport;
