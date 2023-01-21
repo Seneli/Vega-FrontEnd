@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import content from 'static/mock/dashboard';
@@ -28,14 +28,24 @@ const Dashboard = (props: DashboardProps) => {
   const [filterList, setFilterList] = useState<Risk[]>([]);
   const [shownColumns, setShownColumns] = useState<VulnerabilityViewColumn[]>([
     VulnerabilityViewColumn.CVEID,
-    VulnerabilityViewColumn.VulnerabilityDescription,
-    VulnerabilityViewColumn.CWEName,
+    VulnerabilityViewColumn.Impact,
+    VulnerabilityViewColumn.Likelihood,
     VulnerabilityViewColumn.ComponentName,
-    VulnerabilityViewColumn.ComponentHEATRisk,
+    VulnerabilityViewColumn.Risk,
   ]);
   const [sortBy, setSortBy] = useState<VulnerabilityViewColumn>(
     VulnerabilityViewColumn.CVSSSeverity
   );
+
+  const reloadDashboard = () => {
+    console.log(view, searchBy, filterList, shownColumns);
+  };
+
+  useEffect(() => {
+    // RESEND THE REQUEST FROM THE DASHBOARD EVERY RENDER
+    console.log(process.env.REACT_APP_SERVER_ENDPOINT);
+    reloadDashboard();
+  }, [view, filterList, shownColumns]);
 
   return (
     <PageBody>
@@ -47,6 +57,8 @@ const Dashboard = (props: DashboardProps) => {
         <SearchAndFilterBar
           filterList={filterList}
           setFilterList={setFilterList}
+          searchBy={searchBy}
+          setSearchBy={setSearchBy}
         />
         <ShowInfoAndExport
           shownColumns={shownColumns}

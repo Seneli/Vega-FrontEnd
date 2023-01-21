@@ -1,5 +1,5 @@
+import { ChangeEvent } from 'react';
 import styled from 'styled-components';
-import { Input, Button } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { Risk } from 'helpers/enums/dashboard';
@@ -13,21 +13,30 @@ const filterOptions = Object.keys(Risk).filter((item) => {
 interface SearchAndFilterProps {
   filterList: Risk[];
   setFilterList: Function;
+  searchBy: string;
+  setSearchBy: any;
 }
 
 const SearchAndFilter = ({
   filterList,
   setFilterList,
+  searchBy,
+  setSearchBy,
 }: SearchAndFilterProps) => {
   return (
     <Container>
-      <SearchBar
-        size='middle'
-        placeholder='Search by Package Name...'
-        // onSearch={(value) => console.log(value)}
-        enterButton={true}
-        loading={false}
-      />
+      <SearchContainer>
+        <FontAwesomeIcon icon={icon({ name: 'search' })} onClick={() => true} />
+        <SearchInput
+          type='text'
+          placeholder='Search..'
+          value={searchBy}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
+            e.preventDefault();
+            setSearchBy(e.target.value);
+          }}
+        />
+      </SearchContainer>
 
       <CheckboxDropdownButton
         checkboxOptions={filterOptions}
@@ -45,10 +54,27 @@ const SearchAndFilter = ({
 
 const Container = styled.div`
   grid-area: SearchAndFilter;
+  display: flex;
+  gap: 15px;
+  flex-direction: row;
+  flex-wrap: wrap;
 `;
 
-const SearchBar = styled(Input.Search)`
-  width: 50%;
+const SearchContainer = styled.div`
+  border: 2px solid lightgray;
+  padding: 0 8px;
+  border-radius: 7px;
+  height: 35px;
+  width: 300px;
+`;
+
+const SearchInput = styled.input`
+  border: none;
+  padding: 10px;
+  width: 260px;
+  &:focus {
+    outline: none;
+  }
 `;
 
 const DropdownButton = styled.button`
@@ -61,7 +87,7 @@ const DropdownButton = styled.button`
   display: flex;
   justify-content: space-around;
   width: 120px;
-  height: 40px;
+  height: 35px;
   align-items: baseline;
 
   &:hover {
