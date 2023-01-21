@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 // import { PaginationData, User } from './types';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,6 +8,9 @@ import {
   ComponentViewColumn,
   VulnerabilityViewColumn,
 } from 'helpers/enums/dashboard';
+import { usePagination } from 'helpers/hooks/usePagination';
+
+import PaginationController from './PaginationController';
 
 interface PaginatedTableProps {
   sortBy: VulnerabilityViewColumn;
@@ -22,19 +25,17 @@ const PaginatedTable = ({
   shownColumns,
   data,
 }: PaginatedTableProps) => {
-  const [limit, setLimit] = useState(10);
-  const [offset, setOffset] = useState(0);
+  const pageSize = 40;
+  const siblingCount = 1;
+  const totalCount = 500;
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
-  useEffect(() => {
-    // const getData = async () => {
-    //   const tableData = (await import('./getTableData')).default<User>({
-    //     limit,
-    //     offset,
-    //   });
-    //   setData(tableData);
-    // };
-    // getData();
-  }, [limit, offset]);
+  const paginationRange: number[] = usePagination({
+    currentPage,
+    totalCount,
+    siblingCount,
+    pageSize,
+  });
 
   return (
     <Container>
@@ -42,17 +43,17 @@ const PaginatedTable = ({
         <Table>
           <thead>
             <tr>
-              {shownColumns.map((column) => {
+              {shownColumns.map((column: any, index: number) => {
                 return (
-                  <th>
+                  <th key={index}>
                     <HeaderContainer>
                       {column}
                       <HeaderIconsWrap>
-                        <FontAwesomeIcon
+                        <FontAwesomeIcon // SHOW INFO
                           onClick={() => null /*show popup*/}
                           icon={icon({ name: 'circle-info' })}
                         />
-                        <FontAwesomeIcon
+                        <FontAwesomeIcon // FILTER BY
                           onClick={() => setSortBy(column)}
                           icon={icon({ name: 'arrow-down-a-z' })}
                         />
@@ -67,8 +68,8 @@ const PaginatedTable = ({
             {data.map((rowData: any, index: number) => {
               return (
                 <tr key={index}>
-                  {shownColumns.map((column) => {
-                    return <td>{rowData[column]}</td>;
+                  {shownColumns.map((column, index: number) => {
+                    return <td key={index}>{rowData[column]}</td>;
                   })}
                 </tr>
               );
@@ -76,12 +77,18 @@ const PaginatedTable = ({
           </tbody>
         </Table>
       </TableContainer>
+      <PaginationController
+        paginationRange={paginationRange}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
     </Container>
   );
 };
 
 const Container = styled.div`
   grid-area: PaginatedTable;
+  padding-top: 30px;
 `;
 
 const TableContainer = styled.div`
@@ -102,7 +109,7 @@ const HeaderIconsWrap = styled.div`
 `;
 
 const Table = styled.table`
-  /* width: 500px; */
+  width: 100%;
   border-collapse: collapse;
   position: relative;
   & th {
