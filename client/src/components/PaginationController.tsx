@@ -37,11 +37,12 @@ const PaginationController = ({
       {paginationRange?.map((paginationIndex: any, index: number) => {
         return (
           <PaginationDiv
-            // onClick={(e: MouseEventHandler<HTMLDivElement>) => {
-            //   if (e.target.value !== '...') {
-            //     setCurrentPage(currentPage + 1);
-            //   }
-            // }}
+            onClick={() => {
+              if (paginationIndex > -1) {
+                //IF ITS NOT THE "..." DIV
+                setCurrentPage(paginationIndex);
+              }
+            }}
             key={index}
             currentPage={paginationIndex === currentPage ? true : false}
           >
@@ -77,6 +78,10 @@ const PaginationDiv = styled.div<PaginationDivInterface>`
   border-radius: 100px;
   border: ${(props) => (props.currentPage ? 'black solid 1px' : 'none')};
   background-color: ${(props) => props.theme.colors.backgroundGrey};
+  &:hover {
+    margin-top: 2px;
+    box-shadow: 0 0 3px 1px ${(props) => props.theme.colors.backgroundGrey};
+  }
 `;
 
 export default PaginationController;
