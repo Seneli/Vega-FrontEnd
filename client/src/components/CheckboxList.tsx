@@ -25,6 +25,12 @@ const CheckboxList = ({
     }
   };
 
+  const selectAll = (e: ChangeEvent<HTMLInputElement>) => {
+    e.target.checked = false;
+    ref.current.forEach((element) => (element.checked = true));
+    setCheckedList([]);
+  };
+
   const clearAll = (e: ChangeEvent<HTMLInputElement>) => {
     e.target.checked = false;
     ref.current.forEach((element) => (element.checked = false));
@@ -33,18 +39,19 @@ const CheckboxList = ({
 
   return (
     <Container>
-      {checkboxOptions.map((risk, index) => (
-        <label key={risk}>
+      {checkboxOptions.map((item: any, index: number) => (
+        <label key={item}>
           <input
             type='checkbox'
             name='lang'
-            value={risk}
+            value={item}
+            defaultChecked={true}
             onChange={handleChange}
             ref={(element: HTMLInputElement) => {
               ref.current[index] = element;
             }}
           />{' '}
-          {risk}
+          {item}
         </label>
       ))}
       <label key={'Clear All'}>
