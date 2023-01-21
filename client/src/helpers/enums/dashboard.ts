@@ -16,12 +16,12 @@ enum ComponentViewColumn { // Numbered so we can sort them if needed
 }
 
 enum VulnerabilityViewColumn { // Numbered so we can sort them if needed
-  CVEID = 'CVEID',
-  VulnerabilityDescription = 'VulnerabilityDescription',
-  CWEName = 'CWEName',
-  CVSSSeverity = 'CVSSSeverity',
-  ComponentHEATRisk = 'ComponentHEATRisk',
-  ComponentName = 'ComponentName',
+  CVEID = 'CVE ID',
+  CVSSSeverity = 'CVSS Severity',
+  Impact = 'Impact',
+  Likelihood = 'Likelihood',
+  Risk = 'Risk',
+  ComponentName = 'Component Name',
 }
 
 enum Risk {
