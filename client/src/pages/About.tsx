@@ -7,7 +7,7 @@ const About = () => {
       <PageHeader>About Vega</PageHeader>
       {about_content.map((content, index) => {
         return (
-          <PageBody>
+          <PageBody key={index}>
             <Subtitle>{content.title}</Subtitle>
             <Paragraph>{content.paragraph}</Paragraph>
           </PageBody>
