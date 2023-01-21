@@ -21,6 +21,13 @@ const ShowInfoAndExport = ({
   setShownColumns,
 }: ShowInfoAndExportProps) => {
   const themeContext = useContext(ThemeContext);
+
+  const exportDashboard = () => {
+    //CALL THE BACK END TO EXPORT THIS DASHBOARD - could make this an axios call instead?
+    const exportEndpoint = "export";
+    console.log(`${process.env.REACT_APP_SERVER_ENDPOINT}${exportEndpoint}`);
+  };
+
   return (
     <Container>
       <CheckboxDropdownButton
@@ -34,7 +41,11 @@ const ShowInfoAndExport = ({
         </OptionButton>
       </CheckboxDropdownButton>
 
-      <OptionButton color={themeContext.colors.minor} width={'130px'}>
+      <OptionButton
+        onClick={() => exportDashboard()}
+        color={themeContext.colors.minor}
+        width={'130px'}
+      >
         <FontAwesomeIcon icon={icon({ name: 'file-export' })} />
         Export
       </OptionButton>
