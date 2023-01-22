@@ -1,17 +1,41 @@
-import { ChangeEvent, MutableRefObject, useRef } from 'react';
+import { useState, ChangeEvent, useRef } from 'react';
 import styled from 'styled-components';
 
-const FileUploadeButton = () => {
+interface FileUploadProps {
+  format: string | undefined;
+  uploadMethod: string | undefined;
+}
+
+const FileUpload = ({ format, uploadMethod }: FileUploadProps) => {
   const hiddenFileInput = useRef<HTMLInputElement>(null);
+  // const [uploadConfig, uploadConfig] = useState<string>();
 
   const handleClick = () => {
-    console.log('BUTTON WAS CLICKED!');
     if (hiddenFileInput.current === null) {
       //throw error or report some problem :")
     } else {
       hiddenFileInput.current.click();
     }
   };
+
+  const setUploadStateMessage = () => {
+    let tempMsg = '';
+    if (format && uploadMethod) {
+      tempMsg = `You have chosen to upload your SBOM in format: ${format} and method: ${uploadMethod}`;
+    } else if (format === undefined && uploadMethod === undefined) {
+      tempMsg =
+        'You have not chosen a SBOM format or method of upload. Please select one to resume.';
+    } else if (format === undefined) {
+      tempMsg =
+        'You have not chosen a SBOM format to upload. Please select one to resume.';
+    } else {
+      tempMsg =
+        'You have not chosen a SBOM upload method. Please select one to resume.';
+    }
+    return tempMsg;
+  };
+
+  const uploadStateMessage = setUploadStateMessage();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files !== null) {
@@ -30,6 +54,7 @@ const FileUploadeButton = () => {
 
   return (
     <>
+      <p>{uploadStateMessage}</p>
       <Button onClick={() => handleClick()}>Upload a file</Button>
       <input
         type='file'
@@ -57,6 +82,7 @@ const Button = styled.button`
     margin-top: 2px;
     box-shadow: 0 0 3px 1px ${(props) => props.theme.colors.backgroundGrey};
   }
+  margin-top: 10px;
 `;
 
-export default FileUploadeButton;
+export default FileUpload;

@@ -1,17 +1,24 @@
-import { useState } from 'react';
 import styled from 'styled-components';
 
 import UploadStep from 'components/UploadStep';
-import CarouselController from 'components/CarouselController';
 import RadioDropdown from 'components/RadioDropdown';
-import FileUploadeButton from 'components/FileUploadButton';
+import FileUpload from 'components/FileUpload';
 
-interface CarouselBodyProps {}
+interface CarouselBodyProps {
+  currentStep: number;
+  format: string | undefined;
+  setFormat: Function;
+  uploadMethod: string | undefined;
+  setUploadMethod: Function;
+}
 
-const CarouselBody = () => {
-  const [currentStep, setCurrentStep] = useState<number>(1);
-  const length = 3;
-
+const CarouselBody = ({
+  currentStep,
+  format,
+  setFormat,
+  uploadMethod,
+  setUploadMethod,
+}: CarouselBodyProps) => {
   return (
     <Container>
       <UploadStep
@@ -22,6 +29,8 @@ const CarouselBody = () => {
         <RadioDropdown
           prompt={'Select SBOM Format'}
           options={['CycloneDX', 'SPDX']}
+          state={format}
+          setState={setFormat}
         />
       </UploadStep>
 
@@ -33,22 +42,23 @@ const CarouselBody = () => {
         <RadioDropdown
           prompt={'Select Upload Method'}
           options={['Input Manually (copy-paste text)', 'Upload File']}
+          state={uploadMethod}
+          setState={setUploadMethod}
         />
       </UploadStep>
 
       <UploadStep
         visible={currentStep === 3}
         step={3}
-        title={'How Will You Upload Your SBOM?'}
+        title={'Upload Your SBOM'}
       >
-          <FileUploadeButton />
+        <FileUpload format={format} uploadMethod={uploadMethod} />
       </UploadStep>
     </Container>
   );
 };
 
 const Container = styled.div`
-
   display: inline-block;
   overflow: hidden;
   position: relative;
