@@ -37,12 +37,26 @@ const FileUploadeButton = () => {
         onChange={handleChange}
         style={{ display: 'none' }}
       />
+      <Button>Generate Dashboard!</Button>
     </>
   );
 };
 
 const Button = styled.button`
-  /* Insert your favorite CSS code to style a button */
+  border: 2px solid ${(props) => props.theme.colors.backgroundGrey};
+  border-radius: 7px;
+  background-color: #fff;
+  color: ${(props) => props.color};
+  text-align: left;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-around;
+  width: 200px;
+  height: 40px;
+  &:hover {
+    margin-top: 2px;
+    box-shadow: 0 0 3px 1px ${(props) => props.theme.colors.backgroundGrey};
+  }
 `;
 
 export default FileUploadeButton;
