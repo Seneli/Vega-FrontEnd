@@ -1,4 +1,6 @@
-import { useState, ChangeEvent, useRef } from 'react';
+import {
+  useState,
+} from 'react';
 import styled from 'styled-components';
 
 interface FileUploadProps {
@@ -7,16 +9,7 @@ interface FileUploadProps {
 }
 
 const FileUpload = ({ format, uploadMethod }: FileUploadProps) => {
-  const hiddenFileInput = useRef<HTMLInputElement>(null);
-  // const [uploadConfig, uploadConfig] = useState<string>();
-
-  const handleClick = () => {
-    if (hiddenFileInput.current === null) {
-      //throw error or report some problem :")
-    } else {
-      hiddenFileInput.current.click();
-    }
-  };
+  const [file, setFile] = useState();
 
   const setUploadStateMessage = () => {
     let tempMsg = '';
@@ -37,37 +30,44 @@ const FileUpload = ({ format, uploadMethod }: FileUploadProps) => {
 
   const uploadStateMessage = setUploadStateMessage();
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files !== null) {
-      const fileUploaded = e.target.files[0];
-      console.log(fileUploaded);
-      uploadFile(fileUploaded);
-    } else {
-      console.log('THE REF FAILED FUCKK');
-      // TELL THE USER THEIR FILE WASN'T PROPERLY UPLOADED?
-    }
-  };
-
-  const uploadFile = (file: File) => {
-    console.log('uploading file:', file);
+  const uploadFile = (e: any) => {
+    e.preventDefault();
+    // include file upload logic in here!
   };
 
   return (
-    <>
+    <form
+      onSubmit={(e: any) => {
+        uploadFile(e);
+      }}
+    >
       <p>{uploadStateMessage}</p>
-      <Button onClick={() => handleClick()}>Upload a file</Button>
-      <input
-        type='file'
-        ref={hiddenFileInput}
-        onChange={handleChange}
-        style={{ display: 'none' }}
-      />
-      <Button>Generate Dashboard!</Button>
-    </>
+      <FileInput />
+      <Button />
+    </form>
   );
 };
 
-const Button = styled.button`
+const FileInput = styled.input.attrs({ type: 'file' })`
+  width: 100%;
+  &::-webkit-file-upload-button {
+    border: 2px solid ${(props) => props.theme.colors.backgroundGrey};
+    border-radius: 7px;
+    background-color: #fff;
+    color: ${(props) => props.color};
+    text-align: left;
+    padding: 10px 20px;
+    width: 200px;
+    height: 40px;
+    text-align: center;
+    &:hover {
+      box-shadow: 0 0 3px 1px ${(props) => props.theme.colors.backgroundGrey};
+    }
+    margin-top: 10px;
+  }
+`;
+
+const Button = styled.input.attrs({ type: 'submit' })`
   border: 2px solid ${(props) => props.theme.colors.backgroundGrey};
   border-radius: 7px;
   background-color: #fff;
@@ -79,7 +79,6 @@ const Button = styled.button`
   width: 200px;
   height: 40px;
   &:hover {
-    margin-top: 2px;
     box-shadow: 0 0 3px 1px ${(props) => props.theme.colors.backgroundGrey};
   }
   margin-top: 10px;
