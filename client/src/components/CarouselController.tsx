@@ -13,19 +13,19 @@ const CarouselController = ({
   return (
     <Container>
       <StepContainer onClick={() => setCurrentStep(1)}>
-        <p>Logo</p>
+        <p>Insert Logo</p>
         <Number>Step 1</Number>
         <Name>Select Format</Name>
       </StepContainer>
 
       <StepContainer onClick={() => setCurrentStep(2)}>
-        <p>Logo</p>
+        <p>Insert Logo</p>
         <Number>Step 2</Number>
         <Name>Select Upload Method</Name>
       </StepContainer>
 
       <StepContainer onClick={() => setCurrentStep(3)}>
-        <p>Logo</p>
+        <p>Insert Logo</p>
         <Number>Step 3</Number>
         <Name>Upload SBOM</Name>
       </StepContainer>

@@ -1,6 +1,4 @@
-import {
-  useState,
-} from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 
 interface FileUploadProps {
@@ -10,6 +8,7 @@ interface FileUploadProps {
 
 const FileUpload = ({ format, uploadMethod }: FileUploadProps) => {
   const [file, setFile] = useState();
+  const [uploadMessage, setUploadMessage] = useState('');
 
   const setUploadStateMessage = () => {
     let tempMsg = '';
@@ -32,6 +31,7 @@ const FileUpload = ({ format, uploadMethod }: FileUploadProps) => {
 
   const uploadFile = (e: any) => {
     e.preventDefault();
+    setUploadMessage('Upload Complete');
     // include file upload logic in here!
   };
 
@@ -44,6 +44,7 @@ const FileUpload = ({ format, uploadMethod }: FileUploadProps) => {
       <p>{uploadStateMessage}</p>
       <FileInput />
       <Button />
+      <p>{uploadMessage}</p>
     </form>
   );
 };
