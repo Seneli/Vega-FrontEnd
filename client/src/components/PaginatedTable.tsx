@@ -1,9 +1,9 @@
-import { useState } from 'react';
-// import { PaginationData, User } from './types';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
 
+import VulnerabilityViewRow from 'components/rows/VulnerabilityViewRow';
+import ComponentViewRow from 'components/rows/ComponentViewRow';
 import {
   View,
   ComponentViewColumn,
@@ -71,15 +71,25 @@ const PaginatedTable = ({
             </tr>
           </thead>
           <tbody>
-            {data.map((rowData: any, index: number) => {
-              return (
-                <tr key={index}>
-                  {shownColumns.map((column, index: number) => {
-                    return <td key={index}>{rowData[column]}</td>;
-                  })}
-                </tr>
-              );
-            })}
+            {view === View.Vulnerability
+              ? data.map((rowData: any, index: number) => {
+                  return (
+                    <VulnerabilityViewRow
+                      rowData={rowData}
+                      rowIndex={index}
+                      shownColumns={shownColumns}
+                    />
+                  );
+                })
+              : data.map((rowData: any, index: number) => {
+                  return (
+                    <ComponentViewRow
+                      rowData={rowData}
+                      rowIndex={index}
+                      shownColumns={shownColumns}
+                    />
+                  );
+                })}
           </tbody>
         </Table>
       </TableContainer>
@@ -129,16 +139,6 @@ const Table = styled.table`
     text-align: center;
     padding: 0.3rem;
     font-size: 0.7rem;
-  }
-  & tbody tr:nth-child(even) {
-    & td {
-      background: #fff;
-    }
-  }
-  & tbody tr:nth-child(odd) {
-    & td {
-      background: #ced0dc;
-    }
   }
 `;
 
