@@ -86,10 +86,6 @@ const PlusButton = styled.button<DropdownProps>`
   }
 `;
 
-// const DropdownRow = styled.tr<DropdownProps>`
-//   display: ${(props) => (props.selected ? 'block' : 'none')};
-// `;
-
 const DropdownTable = styled.table<DropdownProps>`
   border-top: 10px solid ${(props) => props.theme.colors.primaryPink};
   border-bottom: 10px solid ${(props) => props.theme.colors.primaryPink};
