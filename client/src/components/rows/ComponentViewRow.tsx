@@ -34,7 +34,7 @@ const ComponentViewRow = ({
           );
         })}
       </Row>
-      <tr >
+      <tr>
         <td colSpan={shownColumns.length}>
           {dropdownStatus && (
             <DropdownTable selected={dropdownStatus}>
@@ -46,9 +46,11 @@ const ComponentViewRow = ({
                 </tr>
               </thead>
               <tbody>
-                {shownColumns.map((data: string, index: number) => {
-                  return <td key={index}>{data}</td>;
-                })}
+                <tr>
+                  {shownColumns.map((data: string, index: number) => {
+                    return <td key={index}>{data}</td>;
+                  })}
+                </tr>
               </tbody>
             </DropdownTable>
           )}
@@ -84,14 +86,34 @@ const PlusButton = styled.button<DropdownProps>`
   }
 `;
 
-const DropdownTable = styled.div<DropdownProps>`
+// const DropdownRow = styled.tr<DropdownProps>`
+//   display: ${(props) => (props.selected ? 'block' : 'none')};
+// `;
+
+const DropdownTable = styled.table<DropdownProps>`
+  border-top: 10px solid ${(props) => props.theme.colors.primaryPink};
+  border-bottom: 10px solid ${(props) => props.theme.colors.primaryPink};
+  width: 90%;
+  margin-left: 10%;
   background-color: white;
-  padding: 5px 20px 10px 10px;
+  padding: 10px 0;
   height: auto;
   max-height: 350px;
   border-radius: 5px;
   box-shadow: 2px 2px 10px 2px #00000062;
-  /* display: ${(props) => (props.selected ? 'block' : 'none')}; */
+
+  & th {
+    color: ${(props) => props.theme.colors.minor};
+    position: sticky;
+    min-width: 90px;
+  }
+  tr {
+    width: 100%;
+  }
+  th + th,
+  td + td {
+    border-left: 2px dotted ${(props) => props.theme.colors.backgroundGrey};
+  }
 `;
 
 export default ComponentViewRow;
