@@ -24,8 +24,11 @@ const ShowInfoAndExport = ({
 
   const exportDashboard = () => {
     //CALL THE BACK END TO EXPORT THIS DASHBOARD - could make this an axios call instead?
-    const exportEndpoint = "export";
-    console.log(`${process.env.REACT_APP_SERVER_ENDPOINT}${exportEndpoint}`);
+    const exportEndpoint = 'export';
+    console.log(
+      'EXPORT ENDPOINT: ',
+      `${process.env.REACT_APP_SERVER_ENDPOINT}${exportEndpoint}`
+    );
   };
 
   return (

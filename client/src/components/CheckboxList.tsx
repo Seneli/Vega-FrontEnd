@@ -3,11 +3,13 @@ import styled from 'styled-components';
 
 interface CheckboxListProps {
   checkboxOptions: string[];
+  checkedList: any;
   setCheckedList: Function;
 }
 
 const CheckboxList = ({
   checkboxOptions,
+  checkedList,
   setCheckedList,
 }: CheckboxListProps) => {
   const ref: MutableRefObject<HTMLInputElement[]> = useRef([]);
@@ -15,10 +17,11 @@ const CheckboxList = ({
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = e.target;
     if (checked) {
-      // push selected value in list
-      setCheckedList((prev: string[]) => [...prev, value]);
+      // push selected value in list if it isn't already in list
+      if (!checkedList.includes(value))
+        setCheckedList((prev: string[]) => [...prev, value]);
     } else {
-      // remove unchecked value from the list
+      // remove unchecked value from the list if it is already in list
       setCheckedList((prev: string[]) =>
         prev.filter((x: string) => x !== value)
       );

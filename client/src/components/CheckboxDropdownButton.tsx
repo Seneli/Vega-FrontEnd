@@ -32,6 +32,7 @@ const CheckboxDropdownButton = ({
         <Popup dropdownStatus={dropdownStatus}>
           <CheckboxList
             checkboxOptions={checkboxOptions}
+            checkedList={checkedList}
             setCheckedList={setCheckedList}
           />
         </Popup>

@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import content from 'static/mock/dashboard';
-
 import QuickStat from 'components/QuickStat';
 
 interface QuickStatsProps {

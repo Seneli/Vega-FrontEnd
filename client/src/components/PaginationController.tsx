@@ -15,7 +15,7 @@ const PaginationController = ({
   currentPage,
   setCurrentPage,
 }: PaginationControllerProps) => {
-  // If there are less than 2 times in pagination range we shall not render the component
+  // Do not render component if only one page
   if (currentPage === 0 || paginationRange.length < 2) {
     return null;
   }
@@ -24,12 +24,15 @@ const PaginationController = ({
   const leftArrowActive: boolean = currentPage !== firstPage;
   const lastPage: number = paginationRange[paginationRange.length - 1];
   const rightArrowActive: boolean = currentPage !== lastPage;
+  const ELIPSIS_DIV = -1;
 
   return (
     <PaginationContainer>
       <PaginationDiv
+        clickable={currentPage > 1}
         onClick={() => {
-          if (leftArrowActive) setCurrentPage(currentPage - 1);
+          if (leftArrowActive && currentPage > 1)
+            setCurrentPage(currentPage - 1);
         }}
       >
         <FontAwesomeIcon icon={icon({ name: 'chevron-left' })} />
@@ -37,9 +40,10 @@ const PaginationController = ({
       {paginationRange?.map((paginationIndex: any, index: number) => {
         return (
           <PaginationDiv
+            clickable={paginationIndex < 0 ? false : true}
             onClick={() => {
-              if (paginationIndex > -1) {
-                //IF ITS NOT THE "..." DIV
+              if (paginationIndex > ELIPSIS_DIV) {
+                // All pagination values are greater than -1
                 setCurrentPage(paginationIndex);
               }
             }}
@@ -51,8 +55,13 @@ const PaginationController = ({
         );
       })}
       <PaginationDiv
+        clickable={currentPage < paginationRange[paginationRange.length - 1]}
         onClick={() => {
-          if (rightArrowActive) setCurrentPage(currentPage + 1);
+          if (
+            rightArrowActive &&
+            currentPage < paginationRange[paginationRange.length - 1]
+          )
+            setCurrentPage(currentPage + 1);
         }}
       >
         <FontAwesomeIcon icon={icon({ name: 'chevron-right' })} />
@@ -71,16 +80,21 @@ const PaginationContainer = styled.div`
 
 interface PaginationDivInterface {
   currentPage?: boolean;
+  clickable?: boolean;
 }
 
 const PaginationDiv = styled.div<PaginationDivInterface>`
+  opacity: ${(props) => (props.clickable ? '1' : '0.4')};
   padding: 10px 15px;
   border-radius: 100px;
   border: ${(props) => (props.currentPage ? 'black solid 1px' : 'none')};
   background-color: ${(props) => props.theme.colors.backgroundGrey};
   &:hover {
-    margin-top: 2px;
-    box-shadow: 0 0 3px 1px ${(props) => props.theme.colors.backgroundGrey};
+    margin-top: ${(props) => (props.clickable ? '1px' : '2px')};
+    box-shadow: ${(props) =>
+      props.clickable
+        ? 'none'
+        : `0 0 3px 1px ${props.theme.colors.backgroundGrey}`};
   }
 `;
 

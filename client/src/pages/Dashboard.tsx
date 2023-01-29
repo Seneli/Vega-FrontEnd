@@ -2,7 +2,12 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import content from 'static/mock/dashboard';
-import { View, VulnerabilityViewColumn, Risk } from 'helpers/enums/dashboard';
+import {
+  View,
+  VulnerabilityViewColumn,
+  Risk,
+  ComponentViewColumn,
+} from 'helpers/enums/dashboard';
 
 import QuickStats from 'components/QuickStats';
 import ViewButtons from 'components/ViewButtons';
@@ -13,19 +18,30 @@ import PaginatedTable from 'components/PaginatedTable';
 //TODO: GET THE DATA FROM AN API CALL LATER ON - HAVE IT HANDLED BY A FUNCTION THAT'S REFERENCED IN THIS COMPONENT
 import mockData from 'static/mock/dashboard';
 
-interface DashboardProps {
-  members?: {
-    name: string;
-    position: string;
-    linkedin: string;
-    picture: any;
-  }[];
-}
+const riskArray: string[] = Object.keys(Risk).filter((item) => {
+  return isNaN(Number(item));
+});
 
-const Dashboard = (props: DashboardProps) => {
+const vulnerabilityColumnArray = Object.keys(VulnerabilityViewColumn).filter(
+  (item) => {
+    return isNaN(Number(item));
+  }
+);
+
+const componentColumnArray = Object.keys(ComponentViewColumn).filter((item) => {
+  return isNaN(Number(item));
+});
+
+const Dashboard = () => {
   const [view, setView] = useState<View>(View.Component);
   const [searchBy, setSearchBy] = useState<string>('');
-  const [filterList, setFilterList] = useState<Risk[]>([]);
+  const [filterList, setFilterList] = useState<Risk[]>([
+    Risk.Low,
+    Risk.Medium,
+    Risk.High,
+    Risk.Critical,
+  ]);
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const [shownColumns, setShownColumns] = useState<VulnerabilityViewColumn[]>([
     VulnerabilityViewColumn.CVEID,
     VulnerabilityViewColumn.Impact,
@@ -38,14 +54,28 @@ const Dashboard = (props: DashboardProps) => {
   );
 
   const reloadDashboard = () => {
-    console.log(view, searchBy, filterList, shownColumns);
+    console.log(
+      'SERVER ENDPOINT',
+      process.env.REACT_APP_SERVER_ENDPOINT,
+      '\nVIEW: ',
+      view,
+      '\nSEARCH BY: ',
+      searchBy,
+      '\nFILTER LIST',
+      filterList,
+      '\nSHOWN COLUMNS: ',
+      shownColumns,
+      '\nSORT BY: ',
+      sortBy,
+      '\nCURRENT PAGE: ',
+      currentPage
+    );
   };
 
   useEffect(() => {
     // RESEND THE REQUEST FROM THE DASHBOARD EVERY RENDER
-    console.log(process.env.REACT_APP_SERVER_ENDPOINT);
     reloadDashboard();
-  }, [view, filterList, shownColumns]);
+  }, [view, sortBy, filterList, shownColumns, currentPage]);
 
   return (
     <PageBody>
@@ -65,10 +95,12 @@ const Dashboard = (props: DashboardProps) => {
           setShownColumns={setShownColumns}
         />
         <PaginatedTable
-          sortBy={sortBy}
+          view={view}
           setSortBy={setSortBy}
           shownColumns={shownColumns}
           data={mockData.vulnerabilityList}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
         />
       </DashboardGrid>
     </PageBody>

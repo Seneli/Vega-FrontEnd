@@ -5,30 +5,36 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 import {
+  View,
   ComponentViewColumn,
+  ComponentViewColumnStrings,
   VulnerabilityViewColumn,
+  VulnerabilityViewColumnStrings,
 } from 'helpers/enums/dashboard';
 import { usePagination } from 'helpers/hooks/usePagination';
 
 import PaginationController from './PaginationController';
 
 interface PaginatedTableProps {
-  sortBy: VulnerabilityViewColumn;
+  view: View;
   setSortBy: Function;
-  shownColumns: VulnerabilityViewColumn[] | ComponentViewColumn[];
-  data: any; // TODO: STORE THIS IN A FRONT END CACHE OR SOMETHING? IDK - BASICALLY MOVE IT OUT LATER!
+  shownColumns: string[]; //VulnerabilityViewColumn[] | ComponentViewColumn[];
+  currentPage: number;
+  setCurrentPage: Function;
+  data: any;
 }
 
 const PaginatedTable = ({
-  sortBy,
+  view,
   setSortBy,
   shownColumns,
+  currentPage,
+  setCurrentPage,
   data,
 }: PaginatedTableProps) => {
-  const pageSize = 40;
-  const siblingCount = 1;
-  const totalCount = 500;
-  const [currentPage, setCurrentPage] = useState<number>(1);
+  const pageSize: number = 25;
+  const siblingCount: number = 1;
+  const totalCount: number = 500;
 
   const paginationRange: number[] = usePagination({
     currentPage,
@@ -43,7 +49,7 @@ const PaginatedTable = ({
         <Table>
           <thead>
             <tr>
-              {shownColumns.map((column: any, index: number) => {
+              {shownColumns.map((column: string, index: number) => {
                 return (
                   <th key={index}>
                     <HeaderContainer>
