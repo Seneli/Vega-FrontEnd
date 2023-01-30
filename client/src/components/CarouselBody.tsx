@@ -9,8 +9,8 @@ interface CarouselBodyProps {
   setCurrentStep: Function;
   format: string | undefined;
   setFormat: Function;
-  uploadMethod: string | undefined;
-  setUploadMethod: Function;
+  fileType: string | undefined;
+  setFileType: Function;
 }
 
 const CarouselBody = ({
@@ -18,8 +18,8 @@ const CarouselBody = ({
   setCurrentStep,
   format,
   setFormat,
-  uploadMethod,
-  setUploadMethod,
+  fileType,
+  setFileType,
 }: CarouselBodyProps) => {
   return (
     <Container>
@@ -46,8 +46,8 @@ const CarouselBody = ({
         <RadioDropdown
           prompt={'Select File Type'}
           options={['JSON', 'XML']}
-          state={uploadMethod}
-          setState={setUploadMethod}
+          state={fileType}
+          setState={setFileType}
           currentStep={currentStep}
           setCurrentStep={setCurrentStep}
         />
@@ -58,7 +58,7 @@ const CarouselBody = ({
         step={3}
         title={'Upload Your SBOM'}
       >
-        <FileUpload format={format} uploadMethod={uploadMethod} />
+        <FileUpload format={format} fileType={fileType} />
       </UploadStep>
     </Container>
   );

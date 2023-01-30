@@ -1,15 +1,12 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-
 import CarouselBody from 'components/CarouselBody';
 import CarouselController from 'components/CarouselController';
 const Upload = () => {
   const [currentStep, setCurrentStep] = useState<number>(1);
   const [format, setFormat] = useState<string | undefined>(undefined);
-  const [uploadMethod, setUploadMethod] = useState<string | undefined>(
-    undefined
-  );
+  const [fileType, setFileType] = useState<string | undefined>(undefined);
 
   return (
     <>
@@ -26,8 +23,8 @@ const Upload = () => {
           setCurrentStep={setCurrentStep}
           format={format}
           setFormat={setFormat}
-          uploadMethod={uploadMethod}
-          setUploadMethod={setUploadMethod}
+          fileType={fileType}
+          setFileType={setFileType}
         ></CarouselBody>
       </PageBody>
     </>
