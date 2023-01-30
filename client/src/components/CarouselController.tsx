@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import styled from 'styled-components';
 
 interface CarouselControllerProps {
@@ -12,19 +11,28 @@ const CarouselController = ({
 }: CarouselControllerProps) => {
   return (
     <Container>
-      <StepContainer onClick={() => setCurrentStep(1)}>
+      <StepContainer
+        chosenStep={1 === currentStep}
+        onClick={() => setCurrentStep(1)}
+      >
         <p>Insert Logo</p>
         <Number>Step 1</Number>
         <Name>Select Format</Name>
       </StepContainer>
 
-      <StepContainer onClick={() => setCurrentStep(2)}>
+      <StepContainer
+        chosenStep={2 === currentStep}
+        onClick={() => setCurrentStep(2)}
+      >
         <p>Insert Logo</p>
         <Number>Step 2</Number>
-        <Name>Select Upload Method</Name>
+        <Name>Select File Type</Name>
       </StepContainer>
 
-      <StepContainer onClick={() => setCurrentStep(3)}>
+      <StepContainer
+        chosenStep={3 === currentStep}
+        onClick={() => setCurrentStep(3)}
+      >
         <p>Insert Logo</p>
         <Number>Step 3</Number>
         <Name>Upload SBOM</Name>
@@ -42,11 +50,15 @@ const Container = styled.div`
   padding: 20px;
 `;
 
-const StepContainer = styled.div`
-  /* padding: 20px; */
-  /* display: grid; */
+interface StepContainerProps {
+  chosenStep: boolean;
+}
+
+const StepContainer = styled.div<StepContainerProps>`
+  padding: 5px;
+  border-radius: 15px;
+  background-color: ${(props) => (props.chosenStep ? '#e4e4e4' : 'white')};
   width: 100%;
-  /* height: 100px; */
   & > * {
     margin: 7px;
     padding: 0;

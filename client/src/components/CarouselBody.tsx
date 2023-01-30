@@ -6,6 +6,7 @@ import FileUpload from 'components/FileUpload';
 
 interface CarouselBodyProps {
   currentStep: number;
+  setCurrentStep: Function;
   format: string | undefined;
   setFormat: Function;
   uploadMethod: string | undefined;
@@ -14,6 +15,7 @@ interface CarouselBodyProps {
 
 const CarouselBody = ({
   currentStep,
+  setCurrentStep,
   format,
   setFormat,
   uploadMethod,
@@ -31,19 +33,23 @@ const CarouselBody = ({
           options={['CycloneDX', 'SPDX']}
           state={format}
           setState={setFormat}
+          currentStep={currentStep}
+          setCurrentStep={setCurrentStep}
         />
       </UploadStep>
 
       <UploadStep
         visible={currentStep === 2}
         step={2}
-        title={'How Will You Upload Your SBOM?'}
+        title={'Which File Type Will You Upload?'}
       >
         <RadioDropdown
-          prompt={'Select Upload Method'}
-          options={['Input Manually (copy-paste text)', 'Upload File']}
+          prompt={'Select File Type'}
+          options={['JSON', 'XML']}
           state={uploadMethod}
           setState={setUploadMethod}
+          currentStep={currentStep}
+          setCurrentStep={setCurrentStep}
         />
       </UploadStep>
 
@@ -62,10 +68,6 @@ const Container = styled.div`
   display: inline-block;
   overflow: hidden;
   position: relative;
-  /* text-align: center; */
-  /* background-color: #16a756;
-  color: white;
-  border-radius: 2px; */
   transition: 2s;
 `;
 

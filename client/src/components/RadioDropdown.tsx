@@ -6,12 +6,15 @@ interface RadioDropdownProps {
   options: string[];
   state: string | undefined;
   setState: Function;
+  currentStep: number;
+  setCurrentStep: Function;
 }
 
 const RadioDropdown = ({
+  currentStep,
+  setCurrentStep,
   prompt,
   options,
-  state,
   setState,
 }: RadioDropdownProps) => {
   const [dropdownStatus, setDropdownStatus] = useState<boolean>(false);
@@ -24,6 +27,7 @@ const RadioDropdown = ({
     setDropdownStatus(false);
     setButtonContent(selectedOption);
     setState(selectedOption);
+    setTimeout(setCurrentStep(currentStep + 1), 4000);
   };
 
   return (

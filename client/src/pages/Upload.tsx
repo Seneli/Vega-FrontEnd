@@ -23,6 +23,7 @@ const Upload = () => {
         />
         <CarouselBody
           currentStep={currentStep}
+          setCurrentStep={setCurrentStep}
           format={format}
           setFormat={setFormat}
           uploadMethod={uploadMethod}

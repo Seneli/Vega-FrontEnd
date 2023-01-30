@@ -49,7 +49,10 @@ const FileUpload = ({ format, uploadMethod }: FileUploadProps) => {
   );
 };
 
-const FileInput = styled.input.attrs({ type: 'file' })`
+const FileInput = styled.input.attrs({
+  type: 'file',
+  accept: 'text/xml,application/xml,application/json',
+})`
   width: 100%;
   &::-webkit-file-upload-button {
     border: 2px solid ${(props) => props.theme.colors.backgroundGrey};
