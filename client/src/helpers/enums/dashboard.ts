@@ -1,6 +1,6 @@
 enum View {
-  Component = 'By Component',
-  Vulnerability = 'By Vulnerability',
+  Component = 'Component',
+  Vulnerability = 'Vulnerability',
 }
 
 enum ComponentViewColumn { // Numbered so we can sort them if needed

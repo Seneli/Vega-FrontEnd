@@ -1,36 +1,15 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
-import content from 'static/mock/dashboard';
-import {
-  View,
-  VulnerabilityViewColumn,
-  Risk,
-  ComponentViewColumn,
-} from 'helpers/enums/dashboard';
+import content from 'static/mock/dashboard.json';
+import { View, VulnerabilityViewColumn, Risk } from 'helpers/enums/dashboard';
 
 import QuickStats from 'components/QuickStats';
 import ViewButtons from 'components/ViewButtons';
 import SearchAndFilterBar from 'components/SearchAndFilter';
 import ShowInfoAndExport from 'components/ShowInfoAndExport';
 import PaginatedTable from 'components/PaginatedTable';
-
-//TODO: GET THE DATA FROM AN API CALL LATER ON - HAVE IT HANDLED BY A FUNCTION THAT'S REFERENCED IN THIS COMPONENT
-import mockData from 'static/mock/dashboard';
-
-const riskArray: string[] = Object.keys(Risk).filter((item) => {
-  return isNaN(Number(item));
-});
-
-const vulnerabilityColumnArray = Object.keys(VulnerabilityViewColumn).filter(
-  (item) => {
-    return isNaN(Number(item));
-  }
-);
-
-const componentColumnArray = Object.keys(ComponentViewColumn).filter((item) => {
-  return isNaN(Number(item));
-});
 
 const Dashboard = () => {
   const [view, setView] = useState<View>(View.Component);
@@ -68,6 +47,36 @@ const Dashboard = () => {
       '\nCURRENT PAGE: ',
       currentPage
     );
+    // axios.get(`${process.env.REACT_APP_SERVER_ENDPOINT}`).then(
+    //   (response) => {
+    //     console.log(response);
+    //   },
+    //   (error) => {
+    //     console.log(error);
+    //   }
+    // );
+    const queryParams = {
+      sessionId: 9927,
+      view: 'vulnerability',
+      filterBy: 'severity',
+      sortBy: sortBy,
+      lower: 0,
+      upper: 10,
+      page: currentPage,
+    };
+    // const params = new url.URLSearchParams(queryParams);
+    axios
+      .get(`${process.env.REACT_APP_SERVER_ENDPOINT}/dashboard`, {
+        params: queryParams,
+      })
+      .then(
+        (response) => {
+          console.log(response);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   };
 
   useEffect(() => {
@@ -96,7 +105,7 @@ const Dashboard = () => {
           view={view}
           setSortBy={setSortBy}
           shownColumns={shownColumns}
-          data={mockData.vulnerabilityList}
+          data={content.vulnerabilityList}
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
         />
