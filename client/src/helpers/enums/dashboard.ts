@@ -29,17 +29,13 @@ const ComponentViewColumnStrings = {
 enum VulnerabilityViewColumn { // Numbered so we can sort them if needed
   CVEID = 'CVEID', //{name: 'CVEID', string: 'CVE ID'},
   CVSSSeverity = 'CVSSSeverity',
-  Impact = 'Impact',
-  Likelihood = 'Likelihood',
   Risk = 'Risk',
   ComponentName = 'ComponentName',
 }
 
 const VulnerabilityViewColumnStrings = {
   CVEID: 'CVE ID',
-  CVSSSeverity: 'CVSSSeverity',
-  Impact: 'Impact',
-  Likelihood: 'Likelihood',
+  CVSSSeverity: 'CVSS Severity',
   Risk: 'Risk',
   ComponentName: 'Component Name',
 };

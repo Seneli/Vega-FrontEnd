@@ -44,8 +44,6 @@ const Dashboard = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [shownColumns, setShownColumns] = useState<VulnerabilityViewColumn[]>([
     VulnerabilityViewColumn.CVEID,
-    VulnerabilityViewColumn.Impact,
-    VulnerabilityViewColumn.Likelihood,
     VulnerabilityViewColumn.ComponentName,
     VulnerabilityViewColumn.Risk,
   ]);
