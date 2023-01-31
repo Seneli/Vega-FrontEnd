@@ -8,7 +8,7 @@ interface FileUploadProps {
 }
 
 const FileUpload = ({ format, fileType }: FileUploadProps) => {
-  const [submitMessage, setSubmitMessage] = setState<string>('');
+  const [submitMessage, setSubmitMessage] = useState<string>('');
   const [file, setFile] = useState();
 
   const setUploadStateMessage = () => {
@@ -40,21 +40,28 @@ const FileUpload = ({ format, fileType }: FileUploadProps) => {
       setSubmitMessage('You have not entered a file to submit.');
       return;
     }
-    try {
-      axios
-        .post(`${process.env.REACT_APP_SERVER_ENDPOINT}/upload`, {
-          
-        })
-        .then(setSubmitMessage('Upload Complete.'))
-        .catch();
-    } catch (error: any) {
-      // setSubmitMessage(
-      //     'This submission failed with error code: ',
-      //     error.status
-      //   );
-      console.log(error);
-      console.log(error.message);
-    }
+    const queryParams = {
+      sbomType: `${format}_${fileType}`,
+    };
+    const formData = new FormData();
+    formData.append('sbom', file);
+    axios
+      .post(
+        `${process.env.REACT_APP_SERVER_ENDPOINT}/upload?format=cyclonedxJson`,
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+          // params: queryParams,
+        }
+      )
+      .then(() => {
+        setSubmitMessage('Upload Complete.');
+      })
+      .catch((error: any) => {
+        console.log(error);
+      });
   };
 
   return (
