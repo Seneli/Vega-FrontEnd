@@ -12,7 +12,7 @@ const columnOptions = Object.keys(VulnerabilityViewColumn).filter((item) => {
 });
 
 interface ShowInfoAndExportProps {
-  shownColumns: VulnerabilityViewColumn[];
+  shownColumns: string[];
   setShownColumns: Function;
 }
 

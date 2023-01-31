@@ -19,17 +19,21 @@ const severitiesList = Object.keys(Severity).filter((item) => {
   return isNaN(Number(item));
 });
 
+const vulnerabilityColumnList = Object.keys(VulnerabilityViewColumn).filter(
+  (item) => {
+    return isNaN(Number(item));
+  }
+);
+
 const Dashboard = () => {
   const [view, setView] = useState<View>(View.Component);
   const [searchBy, setSearchBy] = useState<string>('');
   const [riskFilters, setRiskFilters] = useState<string[]>(severitiesList);
   const [impactFilters, setImpactFilters] = useState<string[]>(severitiesList);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [shownColumns, setShownColumns] = useState<VulnerabilityViewColumn[]>([
-    VulnerabilityViewColumn.CVEID,
-    VulnerabilityViewColumn.ComponentName,
-    VulnerabilityViewColumn.Risk,
-  ]);
+  const [shownColumns, setShownColumns] = useState<string[]>(
+    vulnerabilityColumnList
+  );
   const [sortBy, setSortBy] = useState<VulnerabilityViewColumn>(
     VulnerabilityViewColumn.CVSSSeverity
   );
@@ -53,11 +57,10 @@ const Dashboard = () => {
     );
     const queryParams = {
       sessionId: 9927,
-      view: 'vulnerability',
-      filterBy: 'severity',
+      view: view,
+      riskFilters: riskFilters,
+      severityFilters: impactFilters,
       sortBy: sortBy,
-      lower: 0,
-      upper: 10,
       page: currentPage,
     };
     axios
