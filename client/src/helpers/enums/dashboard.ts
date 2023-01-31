@@ -3,6 +3,13 @@ enum View {
   Vulnerability = 'Vulnerability',
 }
 
+enum Severity {
+  Low = 'Low',
+  Medium = 'Medium',
+  High = 'High',
+  Critical = 'Critical',
+}
+
 enum ComponentViewColumn { // Numbered so we can sort them if needed
   ComponentName = 1,
   NumberOfVulnerabilities = 2,
@@ -40,18 +47,11 @@ const VulnerabilityViewColumnStrings = {
   ComponentName: 'Component Name',
 };
 
-enum Risk {
-  Low = 'Low',
-  Medium = 'Medium',
-  High = 'High',
-  Critical = 'Critical',
-}
-
 export {
   View,
   ComponentViewColumn,
   ComponentViewColumnStrings,
   VulnerabilityViewColumn,
   VulnerabilityViewColumnStrings,
-  Risk,
+  Severity,
 };

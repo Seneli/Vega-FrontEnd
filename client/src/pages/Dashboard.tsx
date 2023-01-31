@@ -3,7 +3,11 @@ import styled from 'styled-components';
 import axios from 'axios';
 
 import content from 'static/mock/dashboard.json';
-import { View, VulnerabilityViewColumn, Risk } from 'helpers/enums/dashboard';
+import {
+  View,
+  VulnerabilityViewColumn,
+  Severity,
+} from 'helpers/enums/dashboard';
 
 import QuickStats from 'components/QuickStats';
 import ViewButtons from 'components/ViewButtons';
@@ -11,15 +15,15 @@ import SearchAndFilterBar from 'components/SearchAndFilter';
 import ShowInfoAndExport from 'components/ShowInfoAndExport';
 import PaginatedTable from 'components/PaginatedTable';
 
+const severitiesList = Object.keys(Severity).filter((item) => {
+  return isNaN(Number(item));
+});
+
 const Dashboard = () => {
   const [view, setView] = useState<View>(View.Component);
   const [searchBy, setSearchBy] = useState<string>('');
-  const [filterList, setFilterList] = useState<Risk[]>([
-    Risk.Low,
-    Risk.Medium,
-    Risk.High,
-    Risk.Critical,
-  ]);
+  const [riskFilters, setRiskFilters] = useState<string[]>(severitiesList);
+  const [impactFilters, setImpactFilters] = useState<string[]>(severitiesList);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [shownColumns, setShownColumns] = useState<VulnerabilityViewColumn[]>([
     VulnerabilityViewColumn.CVEID,
@@ -36,10 +40,10 @@ const Dashboard = () => {
       process.env.REACT_APP_SERVER_ENDPOINT,
       '\nVIEW: ',
       view,
-      '\nSEARCH BY: ',
-      searchBy,
-      '\nFILTER LIST',
-      filterList,
+      '\nIMPACT FILTER LIST: ',
+      impactFilters,
+      'RISK FILTER LIST',
+      riskFilters,
       '\nSHOWN COLUMNS: ',
       shownColumns,
       '\nSORT BY: ',
@@ -47,14 +51,6 @@ const Dashboard = () => {
       '\nCURRENT PAGE: ',
       currentPage
     );
-    // axios.get(`${process.env.REACT_APP_SERVER_ENDPOINT}`).then(
-    //   (response) => {
-    //     console.log(response);
-    //   },
-    //   (error) => {
-    //     console.log(error);
-    //   }
-    // );
     const queryParams = {
       sessionId: 9927,
       view: 'vulnerability',
@@ -64,7 +60,6 @@ const Dashboard = () => {
       upper: 10,
       page: currentPage,
     };
-    // const params = new url.URLSearchParams(queryParams);
     axios
       .get(`${process.env.REACT_APP_SERVER_ENDPOINT}/dashboard`, {
         params: queryParams,
@@ -82,7 +77,7 @@ const Dashboard = () => {
   useEffect(() => {
     // RESEND THE REQUEST FROM THE DASHBOARD EVERY RENDER
     reloadDashboard();
-  }, [view, sortBy, filterList, shownColumns, currentPage]);
+  }, [view, sortBy, riskFilters, impactFilters, shownColumns, currentPage]);
 
   return (
     <PageBody>
@@ -92,8 +87,10 @@ const Dashboard = () => {
         <SectionHeading>List of Components and Vulnerabilities</SectionHeading>
         <ViewButtons view={view} setView={setView} />
         <SearchAndFilterBar
-          filterList={filterList}
-          setFilterList={setFilterList}
+          riskFilters={riskFilters}
+          setRiskFilters={setRiskFilters}
+          impactFilters={impactFilters}
+          setImpactFilters={setImpactFilters}
           searchBy={searchBy}
           setSearchBy={setSearchBy}
         />

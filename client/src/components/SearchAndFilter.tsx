@@ -1,31 +1,37 @@
-import { ChangeEvent } from 'react';
 import styled from 'styled-components';
+import { useContext } from 'react';
+import { ThemeContext } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
-import { Risk } from 'helpers/enums/dashboard';
+import { Severity } from 'helpers/enums/dashboard';
 
 import CheckboxDropdownButton from 'components/CheckboxDropdownButton';
 
-const filterOptions = Object.keys(Risk).filter((item) => {
+const filterOptions = Object.keys(Severity).filter((item) => {
   return isNaN(Number(item));
 });
 
 interface SearchAndFilterProps {
-  filterList: Risk[];
-  setFilterList: Function;
+  riskFilters: string[];
+  setRiskFilters: Function;
+  impactFilters: string[];
+  setImpactFilters: Function;
   searchBy: string;
   setSearchBy: any;
 }
 
 const SearchAndFilter = ({
-  filterList,
-  setFilterList,
+  impactFilters,
+  setImpactFilters,
+  riskFilters,
+  setRiskFilters,
   searchBy,
   setSearchBy,
 }: SearchAndFilterProps) => {
+  const themeContext = useContext(ThemeContext);
   return (
     <Container>
-      <SearchContainer>
+      {/* <SearchContainer>
         <FontAwesomeIcon icon={icon({ name: 'search' })} onClick={() => true} />
         <SearchInput
           type='text'
@@ -36,15 +42,26 @@ const SearchAndFilter = ({
             setSearchBy(e.target.value);
           }}
         />
-      </SearchContainer>
+      </SearchContainer> */}
 
       <CheckboxDropdownButton
         checkboxOptions={filterOptions}
-        checkedList={filterList}
-        setCheckedList={setFilterList}
+        checkedList={riskFilters}
+        setCheckedList={setRiskFilters}
       >
-        <DropdownButton>
-          Filter By
+        <DropdownButton color={themeContext.colors.primaryPink}>
+          Filter By Risk
+          <FontAwesomeIcon icon={icon({ name: 'angle-down' })} />
+        </DropdownButton>
+      </CheckboxDropdownButton>
+
+      <CheckboxDropdownButton
+        checkboxOptions={filterOptions}
+        checkedList={impactFilters}
+        setCheckedList={setImpactFilters}
+      >
+        <DropdownButton color={themeContext.colors.minor}>
+          Filter By Impact
           <FontAwesomeIcon icon={icon({ name: 'angle-down' })} />
         </DropdownButton>
       </CheckboxDropdownButton>
@@ -77,16 +94,20 @@ const SearchInput = styled.input`
   }
 `;
 
-const DropdownButton = styled.button`
+interface DropdownButtonProps {
+  color: string;
+}
+
+const DropdownButton = styled.button<DropdownButtonProps>`
   border: none;
   border-radius: 7px;
-  background-color: ${(props) => props.theme.colors.primaryPink};
+  background-color: ${(props) => props.color};
   color: white;
   text-align: left;
   padding: 10px 20px;
   display: flex;
   justify-content: space-around;
-  width: 120px;
+  width: 200px;
   height: 35px;
   align-items: baseline;
 
