@@ -50,16 +50,24 @@ const FileUpload = ({ format, fileType }: FileUploadProps) => {
     setFile(e.target.files[0]);
   };
 
+  const generateSessionID = (min: number, max: number): string => {
+    //generates a number between min and max for now
+    const num = Math.floor(Math.random() * (max - min + 1) + min);
+    return num.toString();
+  };
+
   const uploadFile = (e: any) => {
     e.preventDefault();
     if (!file) {
       setSubmitMessage('You have not entered a file to submit.');
       return;
     }
+    sessionStorage.setItem('sessionID', generateSessionID(0, 1000));
     const queryParams = {
       format: fileFormat,
-      sessionID: 0,
+      sessionID: sessionStorage.getItem('sessionID'),
     };
+    console.log(queryParams);
     const formData = new FormData();
     formData.append('sbom', file);
     axios

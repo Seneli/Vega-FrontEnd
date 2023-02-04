@@ -57,6 +57,8 @@ const Dashboard = () => {
     console.log(
       'SERVER ENDPOINT',
       process.env.REACT_APP_SERVER_ENDPOINT,
+      '\nSESSION ID:', 
+      sessionStorage.getItem('sessionID'),
       '\nVIEW: ',
       view,
       '\nSEARCH BY: ',
