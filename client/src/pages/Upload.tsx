@@ -67,6 +67,7 @@ const PageTitle = styled.h1`
 
 const PageBody = styled.div`
   padding: 40px 0;
+  min-height: 350px;
   width: 80%;
   margin: auto;
   display: flex;

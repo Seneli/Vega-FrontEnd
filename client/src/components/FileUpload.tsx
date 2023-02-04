@@ -47,9 +47,14 @@ const FileUpload = ({ format, fileType }: FileUploadProps) => {
   }, [format, fileType]);
 
   const onChange = (e: any) => {
-    var allowedExtensions = /(\.json|\.xml|\.sbom)$/i;
-    if (!allowedExtensions.exec(e.target.files[0])) {
+    const fileName = e.target.files[0].name;
+    const regex = new RegExp(
+      '(?:.cyclonedx.json|.cyclonedx.xml|.spdx.json|.spdx)$'
+    );
+    const extension = fileName.match(regex);
+    if (!extension) {
       alert('Invalid file type');
+      e.target.value = '';
       return;
     }
     setFile(e.target.files[0]);
