@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
+
 interface CarouselControllerProps {
   currentStep: number;
   setCurrentStep: Function;
@@ -22,7 +25,10 @@ const CarouselController = ({
           }
         }}
       >
-        <p>Insert Logo</p>
+        <FontAwesomeIcon // SHOW INFO
+          style={{ float: 'left' }}
+          icon={icon({ name: 'align-justify' })}
+        />
         <Number>Step 1</Number>
         <Name>Select Format</Name>
       </StepContainer>
@@ -36,7 +42,10 @@ const CarouselController = ({
           }
         }}
       >
-        <p>Insert Logo</p>
+        <FontAwesomeIcon
+          style={{ float: 'left' }}
+          icon={icon({ name: 'diagram-project' })}
+        />
         <Number>Step 2</Number>
         <Name>Select File Type</Name>
       </StepContainer>
@@ -50,7 +59,10 @@ const CarouselController = ({
           }
         }}
       >
-        <p>Insert Logo</p>
+        <FontAwesomeIcon
+          style={{ float: 'left' }}
+          icon={icon({ name: 'upload' })}
+        />
         <Number>Step 3</Number>
         <Name>Upload SBOM</Name>
       </StepContainer>
