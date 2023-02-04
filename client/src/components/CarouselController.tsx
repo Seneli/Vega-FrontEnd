@@ -3,17 +3,24 @@ import styled from 'styled-components';
 interface CarouselControllerProps {
   currentStep: number;
   setCurrentStep: Function;
+  availableSteps: number[];
 }
 
 const CarouselController = ({
   currentStep,
   setCurrentStep,
+  availableSteps,
 }: CarouselControllerProps) => {
   return (
     <Container>
       <StepContainer
+        clickable={availableSteps.includes(1)}
         chosenStep={1 === currentStep}
-        onClick={() => setCurrentStep(1)}
+        onClick={() => {
+          if (availableSteps.includes(1)) {
+            setCurrentStep(1);
+          }
+        }}
       >
         <p>Insert Logo</p>
         <Number>Step 1</Number>
@@ -21,8 +28,13 @@ const CarouselController = ({
       </StepContainer>
 
       <StepContainer
+        clickable={availableSteps.includes(2)}
         chosenStep={2 === currentStep}
-        onClick={() => setCurrentStep(2)}
+        onClick={() => {
+          if (availableSteps.includes(2)) {
+            setCurrentStep(2);
+          }
+        }}
       >
         <p>Insert Logo</p>
         <Number>Step 2</Number>
@@ -30,8 +42,13 @@ const CarouselController = ({
       </StepContainer>
 
       <StepContainer
+        clickable={availableSteps.includes(3)}
         chosenStep={3 === currentStep}
-        onClick={() => setCurrentStep(3)}
+        onClick={() => {
+          if (availableSteps.includes(3)) {
+            setCurrentStep(3);
+          }
+        }}
       >
         <p>Insert Logo</p>
         <Number>Step 3</Number>
@@ -52,6 +69,7 @@ const Container = styled.div`
 
 interface StepContainerProps {
   chosenStep: boolean;
+  clickable: boolean;
 }
 
 const StepContainer = styled.div<StepContainerProps>`
@@ -62,6 +80,10 @@ const StepContainer = styled.div<StepContainerProps>`
   & > * {
     margin: 7px;
     padding: 0;
+  }
+  opacity: ${(props) => (props.clickable ? '100%' : '30%')};
+  &:hover {
+    cursor: ${(props) => (props.clickable ? 'pointer' : 'not-allowed')};
   }
 `;
 

@@ -8,6 +8,7 @@ interface RadioDropdownProps {
   setState: Function;
   currentStep: number;
   setCurrentStep: Function;
+  resetVariable?: Function;
 }
 
 const RadioDropdown = ({
@@ -16,6 +17,7 @@ const RadioDropdown = ({
   prompt,
   options,
   setState,
+  resetVariable,
 }: RadioDropdownProps) => {
   const [dropdownStatus, setDropdownStatus] = useState<boolean>(false);
   const [buttonContent, setButtonContent] = useState<string>(prompt);
@@ -27,6 +29,7 @@ const RadioDropdown = ({
     setDropdownStatus(false);
     setButtonContent(selectedOption);
     setState(selectedOption);
+    if (resetVariable) resetVariable();
     setTimeout(setCurrentStep(currentStep + 1), 4000);
   };
 

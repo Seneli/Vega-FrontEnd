@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import UploadStep from 'components/UploadStep';
@@ -21,6 +22,16 @@ const CarouselBody = ({
   fileType,
   setFileType,
 }: CarouselBodyProps) => {
+  const [fileFormatOptions, setFileFormatOptions] = useState<string[]>([]);
+
+  useEffect(() => {
+    if (format === 'SPDX') {
+      setFileFormatOptions(['JSON', 'TAG VALUE']);
+    } else if (format === 'CycloneDX') {
+      setFileFormatOptions(['JSON', 'XML']);
+    }
+  }, [format]);
+
   return (
     <Container>
       <UploadStep
@@ -35,6 +46,7 @@ const CarouselBody = ({
           setState={setFormat}
           currentStep={currentStep}
           setCurrentStep={setCurrentStep}
+          resetVariable={setFileType}
         />
       </UploadStep>
 
@@ -45,7 +57,7 @@ const CarouselBody = ({
       >
         <RadioDropdown
           prompt={'Select File Type'}
-          options={['JSON', 'XML']}
+          options={fileFormatOptions}
           state={fileType}
           setState={setFileType}
           currentStep={currentStep}

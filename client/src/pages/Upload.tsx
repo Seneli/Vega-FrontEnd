@@ -1,12 +1,21 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import CarouselBody from 'components/CarouselBody';
 import CarouselController from 'components/CarouselController';
 const Upload = () => {
   const [currentStep, setCurrentStep] = useState<number>(1);
+  const [availableSteps, setAvailableSteps] = useState<number[]>([1]);
   const [format, setFormat] = useState<string | undefined>(undefined);
   const [fileType, setFileType] = useState<string | undefined>(undefined);
+
+  useEffect(() => {
+    if (format && fileType) {
+      setAvailableSteps([1, 2, 3]);
+    } else if (format) {
+      setAvailableSteps([1, 2]);
+    }
+  }, [format, fileType]);
 
   return (
     <>
@@ -17,6 +26,7 @@ const Upload = () => {
         <CarouselController
           currentStep={currentStep}
           setCurrentStep={setCurrentStep}
+          availableSteps={availableSteps}
         />
         <CarouselBody
           currentStep={currentStep}

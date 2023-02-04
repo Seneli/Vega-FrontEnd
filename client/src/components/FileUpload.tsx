@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
@@ -8,27 +8,43 @@ interface FileUploadProps {
 }
 
 const FileUpload = ({ format, fileType }: FileUploadProps) => {
+  const [uploadStateMessage, setUploadStateMessage] = useState<string>('');
   const [submitMessage, setSubmitMessage] = useState<string>('');
   const [file, setFile] = useState();
+  const [fileFormat, setFileFormat] = useState<number>(-1);
 
-  const setUploadStateMessage = () => {
-    let tempMsg = '';
-    if (format && fileType) {
-      tempMsg = `You have chosen to upload your SBOM in format: ${format} and file type: ${fileType}`;
-    } else if (format === undefined && fileType === undefined) {
-      tempMsg =
-        'You have not chosen a SBOM format or file type to upload. Please select one to resume.';
-    } else if (format === undefined) {
-      tempMsg =
-        'You have not chosen a SBOM format to upload. Please select one to resume.';
-    } else {
-      tempMsg =
-        'You have not chosen a file type to upload. Please select one to resume.';
+  const updateFileFormat = (format: string, fileType: string) => {
+    if (format === 'SPDX' && fileType === 'JSON') {
+      setFileFormat(0);
+    } else if (format === 'SPDX' && fileType === 'TAG VALUE') {
+      setFileFormat(1);
+    } else if (format === 'CycloneDX' && fileType === 'XML') {
+      setFileFormat(2);
+    } else if (format === 'CycloneDX' && fileType === 'JSON') {
+      setFileFormat(3);
     }
-    return tempMsg;
   };
 
-  const uploadStateMessage = setUploadStateMessage();
+  useEffect(() => {
+    if (format && fileType) {
+      setUploadStateMessage(
+        `You have chosen to upload your SBOM in format: ${format} and file type: ${fileType}`
+      );
+      updateFileFormat(format, fileType);
+    } else if (format === undefined && fileType === undefined) {
+      setUploadStateMessage(
+        'You have not chosen a SBOM format or file type to upload. Please select one to resume.'
+      );
+    } else if (format === undefined) {
+      setUploadStateMessage(
+        'You have not chosen a SBOM format to upload. Please select one to resume.'
+      );
+    } else {
+      setUploadStateMessage(
+        'You have not chosen a file type to upload. Please select one to resume.'
+      );
+    }
+  }, [format, fileType]);
 
   const onChange = (e: any) => {
     setFile(e.target.files[0]);
@@ -41,8 +57,8 @@ const FileUpload = ({ format, fileType }: FileUploadProps) => {
       return;
     }
     const queryParams = {
-      format: 0,
-      sessionID: 27,
+      format: fileFormat,
+      sessionID: 0,
     };
     const formData = new FormData();
     formData.append('sbom', file);
@@ -58,6 +74,7 @@ const FileUpload = ({ format, fileType }: FileUploadProps) => {
       })
       .catch((error: any) => {
         console.log(error);
+        setSubmitMessage('There was an error, you fool');
       });
   };
 
