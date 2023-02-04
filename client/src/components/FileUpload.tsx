@@ -41,21 +41,18 @@ const FileUpload = ({ format, fileType }: FileUploadProps) => {
       return;
     }
     const queryParams = {
-      sbomType: `${format}_${fileType}`,
+      format: 0,
+      sessionID: 27,
     };
     const formData = new FormData();
     formData.append('sbom', file);
     axios
-      .post(
-        `${process.env.REACT_APP_SERVER_ENDPOINT}/upload?format=cyclonedxJson`,
-        formData,
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-          // params: queryParams,
-        }
-      )
+      .post(`${process.env.REACT_APP_SERVER_ENDPOINT}/upload`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+        params: queryParams,
+      })
       .then(() => {
         setSubmitMessage('Upload Complete.');
       })
