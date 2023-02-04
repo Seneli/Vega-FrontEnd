@@ -92,7 +92,9 @@ const FileUpload = ({ format, fileType }: FileUploadProps) => {
       })
       .catch((error: any) => {
         console.log(error);
-        setSubmitMessage('There was an error, you fool');
+        setSubmitMessage(
+          `Upload Incomplete. Request failed due to: ${error.message}`
+        );
       });
   };
 
