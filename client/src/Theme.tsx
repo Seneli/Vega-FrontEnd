@@ -4,7 +4,7 @@ const theme = {
   colors: {
     // TODO: get finalized color scheme from Randa
     black: '#000000',
-    backgroundGrey: '#afafaf',
+    backgroundGrey: '#d4d4d4',
     textGrey: '#19191b',
     primaryPink: '#e02783',
     secondaryGreen: '#81b29a',

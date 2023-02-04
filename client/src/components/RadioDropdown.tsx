@@ -81,7 +81,6 @@ const DropdownButton = styled.button`
     margin-top: 2px;
     box-shadow: 0 0 3px 1px ${(props) => props.theme.colors.backgroundGrey};
   }
-
   &::content {
     animation-name: ${textTransition};
     animation-duration: 2s;
