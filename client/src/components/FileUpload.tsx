@@ -47,6 +47,11 @@ const FileUpload = ({ format, fileType }: FileUploadProps) => {
   }, [format, fileType]);
 
   const onChange = (e: any) => {
+    var allowedExtensions = /(\.json|\.xml|\.sbom)$/i;
+    if (!allowedExtensions.exec(e.target.files[0])) {
+      alert('Invalid file type');
+      return;
+    }
     setFile(e.target.files[0]);
   };
 
@@ -102,7 +107,7 @@ const FileUpload = ({ format, fileType }: FileUploadProps) => {
 
 const FileInput = styled.input.attrs({
   type: 'file',
-  accept: 'text/xml,application/xml,application/json',
+  accept: 'tag/*', //text/xml,application/xml,application/json,*',
 })`
   width: 100%;
   &::-webkit-file-upload-button {
