@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 interface NavbarProps {
   links: string[];
@@ -7,7 +9,10 @@ interface NavbarProps {
 
 const Navbar = ({ links }: NavbarProps) => (
   <StyledNavbar>
-    <NavbarLogo>*insert logo* Vega</NavbarLogo>
+    <NavbarLogo>
+      <FontAwesomeIcon icon={icon({ name: 'star' })} />
+      {"   Vega"}
+    </NavbarLogo>
     <StyledNavbarList>
       {links.map((link) => (
         <StyledNavbarLink key={`l-${link}`}>

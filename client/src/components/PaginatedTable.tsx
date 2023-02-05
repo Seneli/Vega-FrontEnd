@@ -4,13 +4,7 @@ import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 import VulnerabilityViewRow from 'components/rows/VulnerabilityViewRow';
 import ComponentViewRow from 'components/rows/ComponentViewRow';
-import {
-  View,
-  ComponentViewColumn,
-  ComponentViewColumnStrings,
-  VulnerabilityViewColumn,
-  VulnerabilityViewColumnStrings,
-} from 'helpers/enums/dashboard';
+import { View } from 'helpers/enums/dashboard';
 import { usePagination } from 'helpers/hooks/usePagination';
 
 import PaginationController from './PaginationController';
@@ -18,7 +12,7 @@ import PaginationController from './PaginationController';
 interface PaginatedTableProps {
   view: View;
   setSortBy: Function;
-  shownColumns: string[]; //VulnerabilityViewColumn[] | ComponentViewColumn[];
+  shownColumns: string[];
   currentPage: number;
   setCurrentPage: Function;
   data: any;

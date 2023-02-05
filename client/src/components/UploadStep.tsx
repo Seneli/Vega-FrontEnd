@@ -35,12 +35,4 @@ const Container = styled.div<ContainerProps>`
   width: 600px;
 `;
 
-const H2 = styled.h2`
-  /* color: ${(props) => props.theme.color.backgroundGrey}; */
-`;
-
-const StepTitle = styled.h1`
-  /* color: ${(props) => props.theme.color.primaryPink}; */
-`;
-
 export default UploadStep;
