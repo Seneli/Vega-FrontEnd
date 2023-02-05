@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
 
-import VulnerabilityViewRow from 'components/rows/VulnerabilityViewRow';
-import ComponentViewRow from 'components/rows/ComponentViewRow';
+import VulnerabilityViewRow from 'pages/dashboard/rows/VulnerabilityViewRow';
+import ComponentViewRow from 'pages/dashboard/rows/ComponentViewRow';
 import { View } from 'helpers/enums/dashboard';
 import { usePagination } from 'helpers/hooks/usePagination';
 

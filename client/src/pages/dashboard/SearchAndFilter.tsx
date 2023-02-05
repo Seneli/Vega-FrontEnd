@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { Risk } from 'helpers/enums/dashboard';
 
-import CheckboxDropdownButton from 'components/CheckboxDropdownButton';
+import CheckboxDropdownButton from 'pages/dashboard/CheckboxDropdownButton';
 
 const filterOptions = Object.keys(Risk).filter((item) => {
   return isNaN(Number(item));

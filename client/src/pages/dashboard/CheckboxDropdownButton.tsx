@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Badge } from 'antd';
 import { VulnerabilityViewColumn, Risk } from 'helpers/enums/dashboard';
 
-import CheckboxList from 'components/CheckboxList';
+import CheckboxList from './CheckboxList';
 
 interface CheckboxDropdownButtonProps {
   checkboxOptions: string[];

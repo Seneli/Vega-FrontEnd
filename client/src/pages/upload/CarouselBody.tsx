@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import UploadStep from 'components/UploadStep';
-import RadioDropdown from 'components/RadioDropdown';
-import FileUpload from 'components/FileUpload';
+import UploadStep from './UploadStep';
+import RadioDropdown from './RadioDropdown';
+import FileUpload from './FileUpload';
 
 interface CarouselBodyProps {
   currentStep: number;

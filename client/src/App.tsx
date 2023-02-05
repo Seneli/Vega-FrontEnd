@@ -2,10 +2,7 @@ import Navbar from 'partials/Navbar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Theme from 'Theme';
 import { createGlobalStyle } from 'styled-components';
-import About from 'pages/About';
-import Product from 'pages/Product';
-import Upload from 'pages/Upload';
-import Dashboard from 'pages/Dashboard';
+import { About, Dashboard, Product, Upload } from 'pages';
 
 const routes = ['About', 'Product', 'Upload', 'Dashboard'];
 

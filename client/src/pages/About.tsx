@@ -1,4 +1,4 @@
-import about_content from 'static/text/about';
+import about_content from 'helpers/text/about';
 import styled from 'styled-components';
 
 const About = () => {

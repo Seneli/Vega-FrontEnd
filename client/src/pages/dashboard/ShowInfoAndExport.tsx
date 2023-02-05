@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { VulnerabilityViewColumn } from 'helpers/enums/dashboard';
 
-import CheckboxDropdownButton from 'components/CheckboxDropdownButton';
+import CheckboxDropdownButton from 'pages/dashboard/CheckboxDropdownButton';
 
 const columnOptions = Object.keys(VulnerabilityViewColumn).filter((item) => {
   return isNaN(Number(item));

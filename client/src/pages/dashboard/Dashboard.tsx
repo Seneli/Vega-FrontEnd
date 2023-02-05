@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import content from 'static/mock/dashboard';
+import content from 'helpers/mock/dashboard';
 import {
   View,
   VulnerabilityViewColumn,
@@ -9,14 +9,14 @@ import {
   ComponentViewColumn,
 } from 'helpers/enums/dashboard';
 
-import QuickStats from 'components/QuickStats';
-import ViewButtons from 'components/ViewButtons';
-import SearchAndFilterBar from 'components/SearchAndFilter';
-import ShowInfoAndExport from 'components/ShowInfoAndExport';
-import PaginatedTable from 'components/PaginatedTable';
+import QuickStats from './QuickStats';
+import ViewButtons from './ViewButtons';
+import SearchAndFilterBar from './SearchAndFilter';
+import ShowInfoAndExport from './ShowInfoAndExport';
+import PaginatedTable from './PaginatedTable';
 
 //TODO: GET THE DATA FROM AN API CALL LATER ON - HAVE IT HANDLED BY A FUNCTION THAT'S REFERENCED IN THIS COMPONENT
-import mockData from 'static/mock/dashboard';
+import mockData from 'helpers/mock/dashboard';
 
 const riskArray: string[] = Object.keys(Risk).filter((item) => {
   return isNaN(Number(item));
@@ -55,7 +55,7 @@ const Dashboard = () => {
     console.log(
       'SERVER ENDPOINT',
       process.env.REACT_APP_SERVER_ENDPOINT,
-      '\nSESSION ID:', 
+      '\nSESSION ID:',
       sessionStorage.getItem('sessionID'),
       '\nVIEW: ',
       view,

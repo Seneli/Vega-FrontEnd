@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import CarouselBody from 'components/CarouselBody';
-import CarouselController from 'components/CarouselController';
+import CarouselBody from './CarouselBody';
+import CarouselController from './CarouselController';
+
 const Upload = () => {
   const [currentStep, setCurrentStep] = useState<number>(1);
   const [availableSteps, setAvailableSteps] = useState<number[]>([1]);
