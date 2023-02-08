@@ -1,13 +1,25 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
+import SbomProcessor from 'components/SbomProcessor';
 import CarouselBody from 'components/CarouselBody';
 import CarouselController from 'components/CarouselController';
+import { SbomProcessingState } from 'helpers/enums/enums';
+
 const Upload = () => {
+  // const themeContext = useContext(ThemeContext);
   const [currentStep, setCurrentStep] = useState<number>(1);
   const [availableSteps, setAvailableSteps] = useState<number[]>([1]);
   const [format, setFormat] = useState<string | undefined>(undefined);
   const [fileType, setFileType] = useState<string | undefined>(undefined);
+  const [loading, setLoading] = useState(false);
+  const [uploadSuccessful, setUploadSuccessful] = useState(false);
+  const [querySuccessful, setQuerySuccessful] = useState(false);
+  const [riskAnalysisSuccessful, setriskAnalysisSuccessful] = useState(false);
+  const [sbomProcessingState, setSbomProcessingState] = useState(
+    SbomProcessingState.Upload
+  );
+  console.log('upload:', sbomProcessingState);
 
   useEffect(() => {
     if (format && fileType) {
@@ -17,8 +29,26 @@ const Upload = () => {
     }
   }, [format, fileType]);
 
+  useEffect((): void => {
+    if (uploadSuccessful) setSbomProcessingState(SbomProcessingState.Query);
+    else {
+      return;
+    }
+    if (querySuccessful)
+      setSbomProcessingState(SbomProcessingState.RiskAnalysis);
+    else if (riskAnalysisSuccessful)
+      setSbomProcessingState(SbomProcessingState.Done);
+    console.log('useeffect: ', sbomProcessingState);
+  }, [uploadSuccessful, querySuccessful, riskAnalysisSuccessful]);
+
   return (
     <>
+      <SbomProcessor
+        loading={loading}
+        uploadSuccessful={uploadSuccessful}
+        sbomProcessingState={sbomProcessingState}
+        setSbomProcessingState={setSbomProcessingState}
+      />
       <PageHeader>
         <PageTitle>Upload an SBOM</PageTitle>
       </PageHeader>
@@ -35,6 +65,8 @@ const Upload = () => {
           setFormat={setFormat}
           fileType={fileType}
           setFileType={setFileType}
+          setLoading={setLoading}
+          setUploadSuccessful={setUploadSuccessful}
         ></CarouselBody>
       </PageBody>
     </>

@@ -5,9 +5,16 @@ import axios from 'axios';
 interface FileUploadProps {
   format: string | undefined;
   fileType: string | undefined;
+  setLoading: Function;
+  setUploadSuccessful: Function;
 }
 
-const FileUpload = ({ format, fileType }: FileUploadProps) => {
+const FileUpload = ({
+  format,
+  fileType,
+  setLoading,
+  setUploadSuccessful,
+}: FileUploadProps) => {
   const [uploadStateMessage, setUploadStateMessage] = useState<string>('');
   const [submitMessage, setSubmitMessage] = useState<string>('');
   const [file, setFile] = useState();
@@ -72,12 +79,12 @@ const FileUpload = ({ format, fileType }: FileUploadProps) => {
       setSubmitMessage('You have not entered a file to submit.');
       return;
     }
+    setLoading(true);
     sessionStorage.setItem('sessionID', generateSessionID(0, 1000));
     const queryParams = {
       format: fileFormat,
       sessionID: sessionStorage.getItem('sessionID'),
     };
-    console.log(queryParams);
     const formData = new FormData();
     formData.append('sbom', file);
     axios
@@ -87,14 +94,19 @@ const FileUpload = ({ format, fileType }: FileUploadProps) => {
         },
         params: queryParams,
       })
-      .then(() => {
+      .then((response) => {
+        console.log(response);
         setSubmitMessage('Upload Complete.');
+        setLoading(false);
+        setUploadSuccessful(true);
       })
       .catch((error: any) => {
         console.log(error);
         setSubmitMessage(
           `Upload Incomplete. Request failed due to: ${error.message}`
         );
+        setLoading(false);
+        setUploadSuccessful(false);
       });
   };
 

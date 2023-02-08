@@ -12,6 +12,8 @@ interface CarouselBodyProps {
   setFormat: Function;
   fileType: string | undefined;
   setFileType: Function;
+  setLoading: Function;
+  setUploadSuccessful: Function;
 }
 
 const CarouselBody = ({
@@ -21,6 +23,8 @@ const CarouselBody = ({
   setFormat,
   fileType,
   setFileType,
+  setLoading,
+  setUploadSuccessful,
 }: CarouselBodyProps) => {
   const [fileFormatOptions, setFileFormatOptions] = useState<string[]>([]);
 
@@ -70,7 +74,12 @@ const CarouselBody = ({
         step={3}
         title={'Upload Your SBOM'}
       >
-        <FileUpload format={format} fileType={fileType} />
+        <FileUpload
+          format={format}
+          fileType={fileType}
+          setLoading={setLoading}
+          setUploadSuccessful={setUploadSuccessful}
+        />
       </UploadStep>
     </Container>
   );
