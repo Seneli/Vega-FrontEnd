@@ -4,28 +4,46 @@ import styled, { keyframes } from 'styled-components';
 interface RadioDropdownProps {
   prompt: string;
   options: string[];
+  state: string | undefined;
+  setState: Function;
+  currentStep: number;
+  setCurrentStep: Function;
+  resetVariable?: Function;
 }
 
-const RadioDropdown = ({ prompt, options }: RadioDropdownProps) => {
+const RadioDropdown = ({
+  currentStep,
+  setCurrentStep,
+  prompt,
+  options,
+  setState,
+  resetVariable,
+}: RadioDropdownProps) => {
   const [dropdownStatus, setDropdownStatus] = useState<boolean>(false);
   const [buttonContent, setButtonContent] = useState<string>(prompt);
 
-  const selectOption = (selectedOption: string) => {
+  const selectOption = (
+    e: MouseEvent<HTMLDivElement>,
+    selectedOption: string
+  ) => {
     setDropdownStatus(false);
     setButtonContent(selectedOption);
+    setState(selectedOption);
+    if (resetVariable) resetVariable();
+    setTimeout(setCurrentStep(currentStep + 1), 4000);
   };
 
   return (
     <Container>
       <PopupWrapper>
-        <div onClick={() => setDropdownStatus(!dropdownStatus)}>
-          <DropdownButton>{buttonContent}</DropdownButton>
-        </div>
+        <DropdownButton onClick={() => setDropdownStatus(!dropdownStatus)}>
+          {buttonContent}
+        </DropdownButton>
 
         <Popup dropdownStatus={dropdownStatus}>
           <DropdownContainer>
             {options.map((item: any, index: number) => (
-              <DropdownOption key={item} onClick={() => selectOption(item)}>
+              <DropdownOption key={item} onClick={(e) => selectOption(e, item)}>
                 {item}
               </DropdownOption>
             ))}
@@ -61,8 +79,7 @@ const DropdownButton = styled.button`
   padding: 10px 20px;
   display: flex;
   justify-content: space-around;
-  width: 300px;
-  height: 40px;
+  width: 200px;
   &:hover {
     margin-top: 2px;
     box-shadow: 0 0 3px 1px ${(props) => props.theme.colors.backgroundGrey};
