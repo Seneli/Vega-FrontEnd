@@ -1,10 +1,14 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+
+import { vulnerabilityColumnList } from 'helpers/enums/enumLists';
+import { enumToString } from 'helpers/enums/enumToString';
+import DropdownVulnerabilityViewRow from './DropdownVulnerabilityViewRow';
 
 interface ComponentViewRowProps {
   rowData: any;
   rowIndex: number;
-  shownColumns: string[]; //VulnerabilityViewColumn[] | ComponentViewColumn[];
+  shownColumns: string[];
 }
 
 const ComponentViewRow = ({
@@ -40,17 +44,23 @@ const ComponentViewRow = ({
             <DropdownTable selected={dropdownStatus}>
               <thead>
                 <tr>
-                  {shownColumns.map((column: string, index: number) => {
-                    return <th key={index}>{column}</th>;
-                  })}
+                  {vulnerabilityColumnList.map(
+                    (column: string, index: number) => {
+                      return <th key={index}>{enumToString(column)}</th>;
+                    }
+                  )}
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  {shownColumns.map((data: string, index: number) => {
-                    return <td key={index}>{data}</td>;
-                  })}
-                </tr>
+                {rowData.Vulnerabilities.map((vuln: any, index: number) => {
+                  return (
+                    <DropdownVulnerabilityViewRow
+                      rowData={vuln}
+                      rowIndex={index}
+                      shownColumns={vulnerabilityColumnList}
+                    />
+                  );
+                })}
               </tbody>
             </DropdownTable>
           )}

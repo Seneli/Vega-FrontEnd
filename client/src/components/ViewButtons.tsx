@@ -1,27 +1,49 @@
+import React from 'react';
 import styled from 'styled-components';
 import { Button } from 'antd';
 import { View } from 'helpers/enums/dashboard';
+import {
+  vulnerabilityColumnList,
+  componentColumnList,
+} from 'helpers/enums/enumLists';
 
 interface ViewButtonsProps {
   view: View;
   setView: Function;
+  shownColumns: string[];
+  setShownColumns: Function;
 }
 
-const ViewButtons = ({ view, setView }: ViewButtonsProps) => {
+const ViewButtons = ({
+  view,
+  setView,
+  shownColumns,
+  setShownColumns,
+}: ViewButtonsProps) => {
+  const changeView = (newView: View) => {
+    if (view === newView) return;
+    if (newView === View.Component) {
+      setView(View.Component);
+      setShownColumns(componentColumnList);
+    } else {
+      setView(View.Vulnerability);
+      setShownColumns(vulnerabilityColumnList);
+    }
+  };
   return (
     <ViewButtonsDiv>
       <ViewLabel>View</ViewLabel>
       <ViewButton
         view={view}
         option={View.Component}
-        onClick={() => setView(View.Component)}
+        onClick={() => changeView(View.Component)}
       >
         {View.Component}
       </ViewButton>
       <ViewButton
         view={view}
         option={View.Vulnerability}
-        onClick={() => setView(View.Vulnerability)}
+        onClick={() => changeView(View.Vulnerability)}
       >
         {View.Vulnerability}
       </ViewButton>

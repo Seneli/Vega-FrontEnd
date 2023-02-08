@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
 import { Badge } from 'antd';
@@ -59,7 +60,7 @@ const Popup = styled.div<FilterByInterface>`
   z-index: 3;
   background-color: white;
   padding: 5px 20px 10px 10px;
-  width: 170px;
+  min-width: 170px;
   height: auto;
   max-height: 350px;
   border-radius: 5px;

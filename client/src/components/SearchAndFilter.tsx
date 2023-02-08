@@ -1,15 +1,11 @@
 import styled from 'styled-components';
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { ThemeContext } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
-import { Severity } from 'helpers/enums/dashboard';
+import { severitiesList } from 'helpers/enums/enumLists';
 
 import CheckboxDropdownButton from 'components/CheckboxDropdownButton';
-
-const filterOptions = Object.keys(Severity).filter((item) => {
-  return isNaN(Number(item));
-});
 
 interface SearchAndFilterProps {
   riskFilters: string[];
@@ -45,7 +41,7 @@ const SearchAndFilter = ({
       </SearchContainer> */}
 
       <CheckboxDropdownButton
-        checkboxOptions={filterOptions}
+        checkboxOptions={severitiesList}
         checkedList={riskFilters}
         setCheckedList={setRiskFilters}
       >
@@ -56,7 +52,7 @@ const SearchAndFilter = ({
       </CheckboxDropdownButton>
 
       <CheckboxDropdownButton
-        checkboxOptions={filterOptions}
+        checkboxOptions={severitiesList}
         checkedList={impactFilters}
         setCheckedList={setImpactFilters}
       >

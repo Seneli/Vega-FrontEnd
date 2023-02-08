@@ -1,13 +1,18 @@
-import { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import React, { useContext, useState, useEffect } from 'react';
+import styled, { ThemeContext } from 'styled-components';
 import axios from 'axios';
+import LoadingSpin from 'react-loading-spin';
 
-import content from 'static/mock/dashboard.json';
+import { View, VulnerabilityViewColumn } from 'helpers/enums/dashboard';
 import {
-  View,
-  VulnerabilityViewColumn,
-  Severity,
-} from 'helpers/enums/dashboard';
+  severitiesList,
+  componentColumnList,
+  vulnerabilityColumnList,
+} from 'helpers/enums/enumLists';
+import {
+  type DataInterface,
+  EmptyDataInterface,
+} from 'helpers/enums/DataInterface';
 
 import QuickStats from 'components/QuickStats';
 import ViewButtons from 'components/ViewButtons';
@@ -15,48 +20,29 @@ import SearchAndFilterBar from 'components/SearchAndFilter';
 import ShowInfoAndExport from 'components/ShowInfoAndExport';
 import PaginatedTable from 'components/PaginatedTable';
 
-const severitiesList = Object.keys(Severity).filter((item) => {
-  return isNaN(Number(item));
-});
-
-const vulnerabilityColumnList = Object.keys(VulnerabilityViewColumn).filter(
-  (item) => {
-    return isNaN(Number(item));
-  }
-);
-
 const Dashboard = () => {
+  const themeContext = useContext(ThemeContext);
   const [view, setView] = useState<View>(View.Component);
   const [searchBy, setSearchBy] = useState<string>('');
   const [riskFilters, setRiskFilters] = useState<string[]>(severitiesList);
   const [impactFilters, setImpactFilters] = useState<string[]>(severitiesList);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [shownColumns, setShownColumns] = useState<string[]>(
-    vulnerabilityColumnList
-  );
+  const [shownColumns, setShownColumns] =
+    useState<string[]>(componentColumnList);
   const [sortBy, setSortBy] = useState<VulnerabilityViewColumn>(
-    VulnerabilityViewColumn.CVSSSeverity
+    VulnerabilityViewColumn.cveId
   );
+  const [dashboardContent, setDashboardContent] =
+    useState<DataInterface>(EmptyDataInterface);
+  const [loading, setLoading] = useState(false);
+  const [columnDropdown, setColumnDropdown] =
+    useState<string[]>(componentColumnList);
 
-  const reloadDashboard = () => {
-    console.log(
-      'SERVER ENDPOINT',
-      process.env.REACT_APP_SERVER_ENDPOINT,
-      '\nVIEW: ',
-      view,
-      '\nIMPACT FILTER LIST: ',
-      impactFilters,
-      'RISK FILTER LIST',
-      riskFilters,
-      '\nSHOWN COLUMNS: ',
-      shownColumns,
-      '\nSORT BY: ',
-      sortBy,
-      '\nCURRENT PAGE: ',
-      currentPage
-    );
+  useEffect(() => {
+    // RESEND THE REQUEST FROM THE DASHBOARD EVERY RENDER
+    setLoading(true);
     const queryParams = {
-      sessionId: 9927,
+      sessionId: 27,
       view: view,
       riskFilters: riskFilters,
       severityFilters: impactFilters,
@@ -70,49 +56,85 @@ const Dashboard = () => {
       .then(
         (response) => {
           console.log(response);
+          setLoading(false);
+          setDashboardContent(response.data);
+          if (view === View.Component) {
+            setColumnDropdown(componentColumnList);
+          } else {
+            setColumnDropdown(vulnerabilityColumnList);
+          }
         },
         (error) => {
           console.log(error);
+          setLoading(false);
         }
       );
-  };
-
-  useEffect(() => {
-    // RESEND THE REQUEST FROM THE DASHBOARD EVERY RENDER
-    reloadDashboard();
-  }, [view, sortBy, riskFilters, impactFilters, shownColumns, currentPage]);
+  }, [view, sortBy, riskFilters, impactFilters, currentPage]);
 
   return (
-    <PageBody>
-      <SectionHeading>Quick Stats</SectionHeading>
-      <QuickStats stats={content.stats} />
-      <DashboardGrid>
-        <SectionHeading>List of Components and Vulnerabilities</SectionHeading>
-        <ViewButtons view={view} setView={setView} />
-        <SearchAndFilterBar
-          riskFilters={riskFilters}
-          setRiskFilters={setRiskFilters}
-          impactFilters={impactFilters}
-          setImpactFilters={setImpactFilters}
-          searchBy={searchBy}
-          setSearchBy={setSearchBy}
-        />
-        <ShowInfoAndExport
-          shownColumns={shownColumns}
-          setShownColumns={setShownColumns}
-        />
-        <PaginatedTable
-          view={view}
-          setSortBy={setSortBy}
-          shownColumns={shownColumns}
-          data={content.vulnerabilityList}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-        />
-      </DashboardGrid>
-    </PageBody>
+    <>
+      <Loading loading={loading}>
+        <div style={{ margin: 'auto', width: '200px', padding: '30vh 0 0 0' }}>
+          <LoadingSpin
+            width={'15px'}
+            size={'150px'}
+            primaryColor={themeContext.colors.primaryPink}
+          />
+        </div>
+      </Loading>
+      <PageBody>
+        <SectionHeading>Quick Stats</SectionHeading>
+        <QuickStats stats={dashboardContent.stats} />
+        <DashboardGrid>
+          <SectionHeading>
+            List of Components and Vulnerabilities
+          </SectionHeading>
+          <ViewButtons
+            view={view}
+            setView={setView}
+            shownColumns={shownColumns}
+            setShownColumns={setShownColumns}
+          />
+          <SearchAndFilterBar
+            riskFilters={riskFilters}
+            setRiskFilters={setRiskFilters}
+            impactFilters={impactFilters}
+            setImpactFilters={setImpactFilters}
+            searchBy={searchBy}
+            setSearchBy={setSearchBy}
+          />
+          <ShowInfoAndExport
+            shownColumns={shownColumns}
+            setShownColumns={setShownColumns}
+            columnDropdown={columnDropdown}
+          />
+          <PaginatedTable
+            view={view}
+            setSortBy={setSortBy}
+            shownColumns={shownColumns}
+            data={dashboardContent.data}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
+        </DashboardGrid>
+      </PageBody>
+    </>
   );
 };
+
+interface LoadingProps {
+  loading: boolean;
+}
+
+const Loading = styled.div<LoadingProps>`
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  opacity: 70%;
+  background-color: grey;
+  display: ${(props) => (props.loading ? 'block' : 'none')};
+`;
 
 const PageBody = styled.div`
   padding: 20px 10vw 0 10vw;

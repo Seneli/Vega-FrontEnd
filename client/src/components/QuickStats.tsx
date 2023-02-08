@@ -1,30 +1,34 @@
+import React from 'react'
 import styled from 'styled-components';
 import QuickStat from 'components/QuickStat';
 
 interface QuickStatsProps {
   stats: {
-    componentsDetected: number;
-    vulnerabilitiesIdentified: number;
-    highSeverityVulnerabilities: number;
-    highHEATVulnerabilities: number;
+    Components_Detected: number;
+    High_Risk_Vulnerabilities: number;
+    High_Severity_Vulnerabilities: number;
+    Vulnerabilities_Identified: number;
   };
 }
 
 const QuickStats = ({ stats }: QuickStatsProps) => {
   return (
     <QuickStatsFlexbox>
-      <QuickStat name={'Components Detected'} stat={stats.componentsDetected} />
       <QuickStat
-        name={'High HEAT Vulnerabilities'}
-        stat={stats.highHEATVulnerabilities}
+        name={'Components Detected'}
+        stat={stats.Components_Detected}
+      />
+      <QuickStat
+        name={'High Risk Vulnerabilities'}
+        stat={stats.High_Risk_Vulnerabilities}
       />
       <QuickStat
         name={'High Severity Vulnerabilities'}
-        stat={stats.highSeverityVulnerabilities}
+        stat={stats.High_Severity_Vulnerabilities}
       />
       <QuickStat
         name={'Vulnerabilities Identified'}
-        stat={stats.vulnerabilitiesIdentified}
+        stat={stats.Vulnerabilities_Identified}
       />
     </QuickStatsFlexbox>
   );

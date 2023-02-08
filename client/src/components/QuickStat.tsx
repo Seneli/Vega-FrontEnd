@@ -1,3 +1,4 @@
+import React from 'react'
 import styled from 'styled-components';
 
 interface QuickStatProps {
@@ -9,7 +10,7 @@ const QuickStat = ({ name, stat }: QuickStatProps) => {
   return (
     <StatBox>
       <Text>{name}</Text>
-      <Text>{stat}</Text>
+      <Text>{stat === -1 ? '...' : stat}</Text>
     </StatBox>
   );
 };

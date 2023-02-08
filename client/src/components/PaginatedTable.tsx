@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
@@ -6,6 +7,7 @@ import VulnerabilityViewRow from 'components/rows/VulnerabilityViewRow';
 import ComponentViewRow from 'components/rows/ComponentViewRow';
 import { View } from 'helpers/enums/dashboard';
 import { usePagination } from 'helpers/hooks/usePagination';
+import { enumToString } from 'helpers/enums/enumToString';
 
 import PaginationController from './PaginationController';
 
@@ -28,7 +30,7 @@ const PaginatedTable = ({
 }: PaginatedTableProps) => {
   const pageSize: number = 25;
   const siblingCount: number = 1;
-  const totalCount: number = 500;
+  const totalCount: number = data.length;
 
   const paginationRange: number[] = usePagination({
     currentPage,
@@ -47,7 +49,7 @@ const PaginatedTable = ({
                 return (
                   <th key={index}>
                     <HeaderContainer>
-                      {column}
+                      {enumToString(column)}
                       <HeaderIconsWrap>
                         <FontAwesomeIcon // SHOW INFO
                           onClick={() => null /*show popup*/}
@@ -102,7 +104,7 @@ const Container = styled.div`
 `;
 
 const TableContainer = styled.div`
-  height: 500px;
+  min-height: 500px;
   overflow: auto;
 `;
 
