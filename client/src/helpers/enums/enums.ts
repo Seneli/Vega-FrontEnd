@@ -1,4 +1,5 @@
 enum SbomProcessingState {
+  Preupload = 'Pre-upload',
   Upload = 'Upload',
   Query = 'Query',
   RiskAnalysis = 'Risk analysis',

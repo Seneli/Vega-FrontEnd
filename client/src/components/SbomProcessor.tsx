@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from 'react';
+import { useContext } from 'react';
 import styled, { ThemeContext } from 'styled-components';
 import LoadingSpin from 'react-loading-spin';
 
@@ -6,31 +6,14 @@ import { SbomProcessingState } from 'helpers/enums/enums';
 
 interface SbomProcessorProps {
   loading: boolean;
-  uploadSuccessful: boolean;
   sbomProcessingState: SbomProcessingState;
-  setSbomProcessingState: Function;
 }
 
 const SbomProcessor = ({
   loading,
-  uploadSuccessful,
   sbomProcessingState,
-  setSbomProcessingState,
 }: SbomProcessorProps) => {
   const themeContext = useContext(ThemeContext);
-  const [querySuccessful, setQuerySuccessful] = useState(null);
-  const [riskAnalysisSuccessful, setriskAnalysisSuccessful] = useState(null);
-
-  useEffect((): void => {
-    if (uploadSuccessful) setSbomProcessingState(SbomProcessingState.Query);
-    else {
-      return;
-    }
-    if (querySuccessful)
-      setSbomProcessingState(SbomProcessingState.RiskAnalysis);
-    else if (riskAnalysisSuccessful)
-      setSbomProcessingState(SbomProcessingState.Done);
-  }, [uploadSuccessful, querySuccessful, riskAnalysisSuccessful]);
 
   return (
     <Container loading={loading}>

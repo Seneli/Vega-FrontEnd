@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 import SbomProcessor from 'components/SbomProcessor';
 import CarouselBody from 'components/CarouselBody';
@@ -7,19 +8,14 @@ import CarouselController from 'components/CarouselController';
 import { SbomProcessingState } from 'helpers/enums/enums';
 
 const Upload = () => {
-  // const themeContext = useContext(ThemeContext);
   const [currentStep, setCurrentStep] = useState<number>(1);
   const [availableSteps, setAvailableSteps] = useState<number[]>([1]);
   const [format, setFormat] = useState<string | undefined>(undefined);
   const [fileType, setFileType] = useState<string | undefined>(undefined);
   const [loading, setLoading] = useState(false);
-  const [uploadSuccessful, setUploadSuccessful] = useState(false);
-  const [querySuccessful, setQuerySuccessful] = useState(false);
-  const [riskAnalysisSuccessful, setriskAnalysisSuccessful] = useState(false);
   const [sbomProcessingState, setSbomProcessingState] = useState(
-    SbomProcessingState.Upload
+    SbomProcessingState.Preupload
   );
-  console.log('upload:', sbomProcessingState);
 
   useEffect(() => {
     if (format && fileType) {
@@ -30,24 +26,54 @@ const Upload = () => {
   }, [format, fileType]);
 
   useEffect((): void => {
-    if (uploadSuccessful) setSbomProcessingState(SbomProcessingState.Query);
-    else {
-      return;
+    if (sbomProcessingState === SbomProcessingState.Upload) {
+      setLoading(true);
+      const queryParams = {
+        sessionID: sessionStorage.getItem('sessionID'),
+      };
+      axios
+        .get(`${process.env.REACT_APP_SERVER_ENDPOINT}/query`, {
+          params: queryParams,
+        })
+        .then((response) => {
+          setTimeout(
+            () => setSbomProcessingState(SbomProcessingState.RiskAnalysis),
+            1000
+          );
+          setLoading(false);
+          console.log(response);
+        })
+        .catch((error: any) => {
+          console.log(error);
+          setLoading(false);
+        });
+    } else if (sbomProcessingState === SbomProcessingState.RiskAnalysis) {
+      setLoading(true);
+      const queryParams = {
+        sessionID: sessionStorage.getItem('sessionID'),
+      };
+      axios
+        .get(`${process.env.REACT_APP_SERVER_ENDPOINT}/riskanalysis`, {
+          params: queryParams,
+        })
+        .then((response) => {
+          console.log(response);
+          setSbomProcessingState(SbomProcessingState.Done);
+          setLoading(false);
+          window.open('/dashboard');
+        })
+        .catch((error: any) => {
+          console.log(error);
+          setLoading(false);
+        });
     }
-    if (querySuccessful)
-      setSbomProcessingState(SbomProcessingState.RiskAnalysis);
-    else if (riskAnalysisSuccessful)
-      setSbomProcessingState(SbomProcessingState.Done);
-    console.log('useeffect: ', sbomProcessingState);
-  }, [uploadSuccessful, querySuccessful, riskAnalysisSuccessful]);
+  }, [sbomProcessingState]);
 
   return (
     <>
       <SbomProcessor
         loading={loading}
-        uploadSuccessful={uploadSuccessful}
         sbomProcessingState={sbomProcessingState}
-        setSbomProcessingState={setSbomProcessingState}
       />
       <PageHeader>
         <PageTitle>Upload an SBOM</PageTitle>
@@ -66,7 +92,7 @@ const Upload = () => {
           fileType={fileType}
           setFileType={setFileType}
           setLoading={setLoading}
-          setUploadSuccessful={setUploadSuccessful}
+          setSbomProcessingState={setSbomProcessingState}
         ></CarouselBody>
       </PageBody>
     </>

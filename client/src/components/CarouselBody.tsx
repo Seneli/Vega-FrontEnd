@@ -13,7 +13,7 @@ interface CarouselBodyProps {
   fileType: string | undefined;
   setFileType: Function;
   setLoading: Function;
-  setUploadSuccessful: Function;
+  setSbomProcessingState: Function;
 }
 
 const CarouselBody = ({
@@ -24,7 +24,7 @@ const CarouselBody = ({
   fileType,
   setFileType,
   setLoading,
-  setUploadSuccessful,
+  setSbomProcessingState,
 }: CarouselBodyProps) => {
   const [fileFormatOptions, setFileFormatOptions] = useState<string[]>([]);
 
@@ -78,7 +78,7 @@ const CarouselBody = ({
           format={format}
           fileType={fileType}
           setLoading={setLoading}
-          setUploadSuccessful={setUploadSuccessful}
+          setSbomProcessingState={setSbomProcessingState}
         />
       </UploadStep>
     </Container>
