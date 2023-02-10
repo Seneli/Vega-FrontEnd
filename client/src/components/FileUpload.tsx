@@ -92,7 +92,7 @@ const FileUpload = ({
     formData.append('sbom', file);
     axios
       .post(
-        `${process.env.REACT_APP_SERVER_ENDPOINT}/uploadasdsaddads`,
+        `${process.env.REACT_APP_SERVER_ENDPOINT}/upload`,
         formData,
         {
           headers: {
