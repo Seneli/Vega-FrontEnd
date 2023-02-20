@@ -1,57 +1,30 @@
 enum View {
-  Component = 'By Component',
-  Vulnerability = 'By Vulnerability',
+  Component = 'Component',
+  Vulnerability = 'Vulnerability',
+}
+
+enum Severity {
+  Low = 'LOW',
+  Medium = 'MEDIUM',
+  High = 'HIGH',
+  Critical = 'CRITICAL',
 }
 
 enum ComponentViewColumn { // Numbered so we can sort them if needed
-  ComponentName = 1,
-  NumberOfVulnerabilities = 2,
-  ConsolidatedHEATRiskScore = 3,
-  MaxHeatRiskScore = 4,
-  CVSSBaseScore = 5,
-  LikelihoodScore = 6,
-  ImpactScore = 7,
-  VulnerabilityStatus = 8,
-  CVEReference = 9,
+  Component_Name,
+  Component_Ref,
+  Consolidated_Risk,
+  Highest_Risk,
+  Number_of_Vulnerabilities,
 }
-
-const ComponentViewColumnStrings = {
-  ComponentName: 'Component Name',
-  NumberOfVulnerabilities: 'Number Of Vulnerabilities',
-  ConsolidatedHEATRiskScore: 'Consolidated HEAT Risk Score',
-  CVSSBaseScore: 'CVSS Base Score',
-  LikelihoodScore: 'Likelihood Score',
-  ImpactScore: 'Impact Score',
-  VulnerabilityStatus: 'Vulnerability Status',
-  CVEReference: 'CVE Reference',
-};
 
 enum VulnerabilityViewColumn { // Numbered so we can sort them if needed
-  CVEID = 'CVEID', //{name: 'CVEID', string: 'CVE ID'},
-  CVSSSeverity = 'CVSSSeverity',
-  Risk = 'Risk',
-  ComponentName = 'ComponentName',
+  cveId,
+  cvss2,
+  impact,
+  likelihood,
+  packageRef,
+  risk,
 }
 
-const VulnerabilityViewColumnStrings = {
-  CVEID: 'CVE ID',
-  CVSSSeverity: 'CVSS Severity',
-  Risk: 'Risk',
-  ComponentName: 'Component Name',
-};
-
-enum Risk {
-  Low = 'Low',
-  Medium = 'Medium',
-  High = 'High',
-  Critical = 'Critical',
-}
-
-export {
-  View,
-  ComponentViewColumn,
-  ComponentViewColumnStrings,
-  VulnerabilityViewColumn,
-  VulnerabilityViewColumnStrings,
-  Risk,
-};
+export { View, ComponentViewColumn, VulnerabilityViewColumn, Severity };

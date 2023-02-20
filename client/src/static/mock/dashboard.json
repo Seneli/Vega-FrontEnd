@@ -1,0 +1,570 @@
+{
+  "stats": {
+    "componentsDetected": 60,
+    "vulnerabilitiesIdentified": 12,
+    "highSeverityVulnerabilities": 50,
+    "highHEATVulnerabilities": 6
+  },
+  "vulnerabilityList": [
+    {
+      "CVEID": "51389-113",
+      "Impact": "‫test‫",
+      "Likelihood": "Leipoa ocellata",
+      "CVSSSeverity": null,
+      "Risk": 2,
+      "ComponentName": "Malleefowl"
+    },
+    {
+      "CVEID": "55138-001",
+      "Impact": null,
+      "Likelihood": "Spermophilus armatus",
+      "CVSSSeverity": null,
+      "Risk": 5,
+      "ComponentName": "Squirrel, uinta ground"
+    },
+    {
+      "CVEID": "68428-730",
+      "Impact": "../../../../../../../../../../../etc/hosts",
+      "Likelihood": "Procyon cancrivorus",
+      "CVSSSeverity": 3,
+      "Risk": 6,
+      "ComponentName": "Raccoon, crab-eating"
+    },
+    {
+      "CVEID": "64942-1194",
+      "Impact": "../../../../../../../../../../../etc/hosts",
+      "Likelihood": "Oncorhynchus nerka",
+      "CVSSSeverity": 8,
+      "Risk": null,
+      "ComponentName": "Salmon, sockeye"
+    },
+    {
+      "CVEID": "0615-6516",
+      "Impact": "和製漢語",
+      "Likelihood": "Tetracerus quadricornis",
+      "CVSSSeverity": 6,
+      "Risk": 5,
+      "ComponentName": "Antelope, four-horned"
+    },
+    {
+      "CVEID": "0363-0698",
+      "Impact": "⁦test⁧",
+      "Likelihood": "Mazama gouazoubira",
+      "CVSSSeverity": 2,
+      "Risk": 8,
+      "ComponentName": "Deer, savannah"
+    },
+    {
+      "CVEID": "47219-204",
+      "Impact": "울란바토르",
+      "Likelihood": "Trachyphonus vaillantii",
+      "CVSSSeverity": 7,
+      "Risk": 0,
+      "ComponentName": "Barbet, levaillant's"
+    },
+    {
+      "CVEID": "43275-110",
+      "Impact": "-$1.00",
+      "Likelihood": "Sitta canadensis",
+      "CVSSSeverity": 8,
+      "Risk": 0,
+      "ComponentName": "Nuthatch, red-breasted"
+    },
+    {
+      "CVEID": "68428-125",
+      "Impact": "田中さんにあげて下さい",
+      "Likelihood": "Otaria flavescens",
+      "CVSSSeverity": 8,
+      "Risk": null,
+      "ComponentName": "Southern sea lion"
+    },
+    {
+      "CVEID": "49967-416",
+      "Impact": null,
+      "Likelihood": "Tringa glareola",
+      "CVSSSeverity": 7,
+      "Risk": null,
+      "ComponentName": "Sandpiper, spotted wood"
+    },
+    {
+      "CVEID": "63629-4027",
+      "Impact": "・(￣∀￣)・:*:",
+      "Likelihood": "Vulpes chama",
+      "CVSSSeverity": 1,
+      "Risk": 4,
+      "ComponentName": "Fox, silver-backed"
+    },
+    {
+      "CVEID": "58232-9916",
+      "Impact": null,
+      "Likelihood": "Ciconia episcopus",
+      "CVSSSeverity": 9,
+      "Risk": 0,
+      "ComponentName": "Stork, white-necked"
+    },
+    {
+      "CVEID": "0363-0799",
+      "Impact": "ÅÍÎÏ˝ÓÔÒÚÆ☃",
+      "Likelihood": "Panthera leo",
+      "CVSSSeverity": 2,
+      "Risk": 6,
+      "ComponentName": "African lion"
+    },
+    {
+      "CVEID": "0904-6328",
+      "Impact": "Z̮̞̠͙͔ͅḀ̗̞͈̻̗Ḷ͙͎̯̹̞͓G̻O̭̗̮",
+      "Likelihood": "Limosa haemastica",
+      "CVSSSeverity": 6,
+      "Risk": 9,
+      "ComponentName": "Hudsonian godwit"
+    },
+    {
+      "CVEID": "49349-104",
+      "Impact": "<svg><script>0<1>alert('XSS')</script>",
+      "Likelihood": "Butorides striatus",
+      "CVSSSeverity": 6,
+      "Risk": 6,
+      "ComponentName": "Little heron"
+    },
+    {
+      "CVEID": "49371-037",
+      "Impact": null,
+      "Likelihood": "Mirounga angustirostris",
+      "CVSSSeverity": 0,
+      "Risk": 1,
+      "ComponentName": "Seal, northern elephant"
+    },
+    {
+      "CVEID": "0049-4940",
+      "Impact": "<script>alert('hi')</script>",
+      "Likelihood": "Certotrichas paena",
+      "CVSSSeverity": 9,
+      "Risk": null,
+      "ComponentName": "Robin, kalahari scrub"
+    },
+    {
+      "CVEID": "55154-1855",
+      "Impact": "␡",
+      "Likelihood": "unavailable",
+      "CVSSSeverity": null,
+      "Risk": 4,
+      "ComponentName": "Snake (unidentified)"
+    },
+    {
+      "CVEID": "42291-170",
+      "Impact": "👾 🙇 💁 🙅 🙆 🙋 🙎 🙍 ",
+      "Likelihood": "Ardea golieth",
+      "CVSSSeverity": 8,
+      "Risk": 9,
+      "ComponentName": "Giant heron"
+    },
+    {
+      "CVEID": "63323-961",
+      "Impact": "00˙Ɩ$-",
+      "Likelihood": "Ammospermophilus nelsoni",
+      "CVSSSeverity": 7,
+      "Risk": null,
+      "ComponentName": "Nelson ground squirrel"
+    },
+    {
+      "CVEID": "23155-026",
+      "Impact": null,
+      "Likelihood": "Bradypus tridactylus",
+      "CVSSSeverity": 1,
+      "Risk": 9,
+      "ComponentName": "Sloth, pale-throated three-toed"
+    },
+    {
+      "CVEID": "48951-4087",
+      "Impact": "Z̮̞̠͙͔ͅḀ̗̞͈̻̗Ḷ͙͎̯̹̞͓G̻O̭̗̮",
+      "Likelihood": "Papio ursinus",
+      "CVSSSeverity": null,
+      "Risk": 8,
+      "ComponentName": "Baboon, chacma"
+    },
+    {
+      "CVEID": "59900-118",
+      "Impact": "null",
+      "Likelihood": "Alouatta seniculus",
+      "CVSSSeverity": 0,
+      "Risk": 5,
+      "ComponentName": "Monkey, red howler"
+    },
+    {
+      "CVEID": "64141-018",
+      "Impact": "✋🏿 💪🏿 👐🏿 🙌🏿 👏🏿 🙏🏿",
+      "Likelihood": "Dasyurus viverrinus",
+      "CVSSSeverity": 0,
+      "Risk": 1,
+      "ComponentName": "Native cat"
+    },
+    {
+      "CVEID": "16714-385",
+      "Impact": "̡͓̞ͅI̗̘̦͝n͇͇͙v̮̫ok̲̫̙͈i̖͙̭̹̠̞n̡̻̮̣̺g̲͈͙̭͙̬͎ ̰t͔̦h̞̲e̢̤ ͍̬̲͖f̴̘͕̣è͖ẹ̥̩l͖͔͚i͓͚̦͠n͖͍̗͓̳̮g͍ ̨o͚̪͡f̘̣̬ ̖̘͖̟͙̮c҉͔̫͖͓͇͖ͅh̵̤̣͚͔á̗̼͕ͅo̼̣̥s̱͈̺̖̦̻͢.̛̖̞̠̫̰",
+      "Likelihood": "unavailable",
+      "CVSSSeverity": 4,
+      "Risk": 2,
+      "ComponentName": "Snake (unidentified)"
+    },
+    {
+      "CVEID": "68001-189",
+      "Impact": null,
+      "Likelihood": "Phoeniconaias minor",
+      "CVSSSeverity": null,
+      "Risk": null,
+      "ComponentName": "Flamingo, lesser"
+    },
+    {
+      "CVEID": "11822-0566",
+      "Impact": null,
+      "Likelihood": "Nyctea scandiaca",
+      "CVSSSeverity": 10,
+      "Risk": 9,
+      "ComponentName": "Owl, snowy"
+    },
+    {
+      "CVEID": "50865-682",
+      "Impact": null,
+      "Likelihood": "Antidorcas marsupialis",
+      "CVSSSeverity": 5,
+      "Risk": 2,
+      "ComponentName": "Springbuck"
+    },
+    {
+      "CVEID": "0409-2540",
+      "Impact": null,
+      "Likelihood": "Ara ararauna",
+      "CVSSSeverity": 7,
+      "Risk": 3,
+      "ComponentName": "Blue and gold macaw"
+    },
+    {
+      "CVEID": "10631-238",
+      "Impact": null,
+      "Likelihood": "Meles meles",
+      "CVSSSeverity": 5,
+      "Risk": null,
+      "ComponentName": "Badger, european"
+    },
+    {
+      "CVEID": "55878-105",
+      "Impact": "0.00",
+      "Likelihood": "Bucorvus leadbeateri",
+      "CVSSSeverity": 10,
+      "Risk": 0,
+      "ComponentName": "Hornbill, leadbeateri's ground"
+    },
+    {
+      "CVEID": "0781-2195",
+      "Impact": "<img src=x onerror=alert('hi') />",
+      "Likelihood": "Chamaelo sp.",
+      "CVSSSeverity": 5,
+      "Risk": 5,
+      "ComponentName": "Chameleon (unidentified)"
+    },
+    {
+      "CVEID": "0904-3003",
+      "Impact": "0.00",
+      "Likelihood": "Cracticus nigroagularis",
+      "CVSSSeverity": 6,
+      "Risk": null,
+      "ComponentName": "Black-throated butcher bird"
+    },
+    {
+      "CVEID": "68016-261",
+      "Impact": "⁰⁴⁵",
+      "Likelihood": "Eremophila alpestris",
+      "CVSSSeverity": 5,
+      "Risk": 10,
+      "ComponentName": "Lark, horned"
+    },
+    {
+      "CVEID": "51270-113",
+      "Impact": "1E02",
+      "Likelihood": "Ursus americanus",
+      "CVSSSeverity": 5,
+      "Risk": 0,
+      "ComponentName": "Bear, black"
+    },
+    {
+      "CVEID": "0268-1414",
+      "Impact": null,
+      "Likelihood": "Tamiasciurus hudsonicus",
+      "CVSSSeverity": null,
+      "Risk": 9,
+      "ComponentName": "Squirrel, red"
+    },
+    {
+      "CVEID": "0409-2266",
+      "Impact": null,
+      "Likelihood": "Meles meles",
+      "CVSSSeverity": null,
+      "Risk": 1,
+      "ComponentName": "Eurasian badger"
+    },
+    {
+      "CVEID": "49035-176",
+      "Impact": "0️⃣ 1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣ 9️⃣ 🔟",
+      "Likelihood": "Haliaetus vocifer",
+      "CVSSSeverity": 5,
+      "Risk": 1,
+      "ComponentName": "Eagle, african fish"
+    },
+    {
+      "CVEID": "0603-5335",
+      "Impact": "$1.00",
+      "Likelihood": "Carphophis sp.",
+      "CVSSSeverity": 8,
+      "Risk": 5,
+      "ComponentName": "Worm snake (unidentified)"
+    },
+    {
+      "CVEID": "52204-113",
+      "Impact": "⁦test⁧",
+      "Likelihood": "Varanus salvator",
+      "CVSSSeverity": 6,
+      "Risk": 3,
+      "ComponentName": "Two-banded monitor"
+    },
+    {
+      "CVEID": "21130-375",
+      "Impact": "-1.00",
+      "Likelihood": "Myrmecophaga tridactyla",
+      "CVSSSeverity": 9,
+      "Risk": null,
+      "ComponentName": "Anteater, giant"
+    },
+    {
+      "CVEID": "10237-901",
+      "Impact": null,
+      "Likelihood": "Grus canadensis",
+      "CVSSSeverity": 1,
+      "Risk": 7,
+      "ComponentName": "Crane, sandhill"
+    },
+    {
+      "CVEID": "16864-240",
+      "Impact": null,
+      "Likelihood": "Ara chloroptera",
+      "CVSSSeverity": 8,
+      "Risk": 0,
+      "ComponentName": "Macaw, red and blue"
+    },
+    {
+      "CVEID": "49288-0589",
+      "Impact": "1.00",
+      "Likelihood": "Chauna torquata",
+      "CVSSSeverity": 2,
+      "Risk": 7,
+      "ComponentName": "Crested screamer"
+    },
+    {
+      "CVEID": "63323-327",
+      "Impact": "ﾟ･✿ヾ╲(｡◕‿◕｡)╱✿･ﾟ",
+      "Likelihood": "Bassariscus astutus",
+      "CVSSSeverity": 6,
+      "Risk": 4,
+      "ComponentName": "Miner's cat"
+    },
+    {
+      "CVEID": "57520-0409",
+      "Impact": "和製漢語",
+      "Likelihood": "Branta canadensis",
+      "CVSSSeverity": 3,
+      "Risk": 1,
+      "ComponentName": "Canada goose"
+    },
+    {
+      "CVEID": "55154-1242",
+      "Impact": "̡͓̞ͅI̗̘̦͝n͇͇͙v̮̫ok̲̫̙͈i̖͙̭̹̠̞n̡̻̮̣̺g̲͈͙̭͙̬͎ ̰t͔̦h̞̲e̢̤ ͍̬̲͖f̴̘͕̣è͖ẹ̥̩l͖͔͚i͓͚̦͠n͖͍̗͓̳̮g͍ ̨o͚̪͡f̘̣̬ ̖̘͖̟͙̮c҉͔̫͖͓͇͖ͅh̵̤̣͚͔á̗̼͕ͅo̼̣̥s̱͈̺̖̦̻͢.̛̖̞̠̫̰",
+      "Likelihood": "Odocoilenaus virginianus",
+      "CVSSSeverity": 3,
+      "Risk": 7,
+      "ComponentName": "White-tailed deer"
+    },
+    {
+      "CVEID": "24236-217",
+      "Impact": "() { _; } >_[$($())] { touch /tmp/blns.shellshock2.fail; }",
+      "Likelihood": "Falco peregrinus",
+      "CVSSSeverity": 4,
+      "Risk": 0,
+      "ComponentName": "Peregrine falcon"
+    },
+    {
+      "CVEID": "59365-6064",
+      "Impact": "1E+02",
+      "Likelihood": "Plegadis ridgwayi",
+      "CVSSSeverity": 9,
+      "Risk": 5,
+      "ComponentName": "Puna ibis"
+    },
+    {
+      "CVEID": "76354-010",
+      "Impact": "`⁄€‹›ﬁﬂ‡°·‚—±",
+      "Likelihood": "Melophus lathami",
+      "CVSSSeverity": 6,
+      "Risk": 5,
+      "ComponentName": "Bunting, crested"
+    },
+    {
+      "CVEID": "0469-3575",
+      "Impact": ",./;'[]\\-=",
+      "Likelihood": "Ardea golieth",
+      "CVSSSeverity": 6,
+      "Risk": 2,
+      "ComponentName": "Heron, goliath"
+    },
+    {
+      "CVEID": "50845-0121",
+      "Impact": "NULL",
+      "Likelihood": "Cygnus buccinator",
+      "CVSSSeverity": 2,
+      "Risk": 7,
+      "ComponentName": "Swan, trumpeter"
+    },
+    {
+      "CVEID": "10956-618",
+      "Impact": "-$1.00",
+      "Likelihood": "Alligator mississippiensis",
+      "CVSSSeverity": 8,
+      "Risk": 0,
+      "ComponentName": "American alligator"
+    },
+    {
+      "CVEID": "0143-3370",
+      "Impact": "𠜎𠜱𠝹𠱓𠱸𠲖𠳏",
+      "Likelihood": "Anastomus oscitans",
+      "CVSSSeverity": 7,
+      "Risk": 7,
+      "ComponentName": "Openbill, asian"
+    },
+    {
+      "CVEID": "13668-137",
+      "Impact": "和製漢語",
+      "Likelihood": "Spizaetus coronatus",
+      "CVSSSeverity": null,
+      "Risk": null,
+      "ComponentName": "Crowned eagle"
+    },
+    {
+      "CVEID": "0143-9654",
+      "Impact": "Ṱ̺̺̕o͞ ̷i̲̬͇̪͙n̝̗͕v̟̜̘̦͟o̶̙̰̠kè͚̮̺̪̹̱̤ ̖t̝͕̳̣̻̪͞h̼͓̲̦̳̘̲e͇̣̰̦̬͎ ̢̼̻̱̘h͚͎͙̜̣̲ͅi̦̲̣̰̤v̻͍e̺̭̳̪̰-m̢iͅn̖̺̞̲̯̰d̵̼̟͙̩̼̘̳ ̞̥̱̳̭r̛̗̘e͙p͠r̼̞̻̭̗e̺̠̣͟s̘͇̳͍̝͉e͉̥̯̞̲͚̬͜ǹ̬͎͎̟̖͇̤t͍̬̤͓̼̭͘ͅi̪̱n͠g̴͉ ͏͉ͅc̬̟h͡a̫̻̯͘o̫̟̖͍̙̝͉s̗̦̲.̨̹͈̣",
+      "Likelihood": "Lamprotornis superbus",
+      "CVSSSeverity": 0,
+      "Risk": 6,
+      "ComponentName": "Superb starling"
+    },
+    {
+      "CVEID": "54575-461",
+      "Impact": null,
+      "Likelihood": "Eolophus roseicapillus",
+      "CVSSSeverity": 5,
+      "Risk": null,
+      "ComponentName": "Red-breasted cockatoo"
+    },
+    {
+      "CVEID": "48951-3110",
+      "Impact": null,
+      "Likelihood": "Suricata suricatta",
+      "CVSSSeverity": null,
+      "Risk": null,
+      "ComponentName": "Meerkat"
+    },
+    {
+      "CVEID": "0065-0645",
+      "Impact": "❤️ 💔 💌 💕 💞 💓 💗 💖 💘 💝 💟 💜 💛 💚 💙",
+      "Likelihood": "Cathartes aura",
+      "CVSSSeverity": null,
+      "Risk": 4,
+      "ComponentName": "Turkey vulture"
+    },
+    {
+      "CVEID": "67046-675",
+      "Impact": ",。・:*:・゜’( ☻ ω ☻ )。・:*:・゜’",
+      "Likelihood": "Geochelone elegans",
+      "CVSSSeverity": 2,
+      "Risk": 5,
+      "ComponentName": "Tortoise, indian star"
+    },
+    {
+      "CVEID": "52960-201",
+      "Impact": "åß∂ƒ©˙∆˚¬…æ",
+      "Likelihood": "Ara chloroptera",
+      "CVSSSeverity": 9,
+      "Risk": 5,
+      "ComponentName": "Macaw, red and blue"
+    },
+    {
+      "CVEID": "14783-886",
+      "Impact": "() { 0; }; touch /tmp/blns.shellshock1.fail;",
+      "Likelihood": "Ardea golieth",
+      "CVSSSeverity": 2,
+      "Risk": 0,
+      "ComponentName": "Heron, giant"
+    },
+    {
+      "CVEID": "21695-016",
+      "Impact": "⁦test⁧",
+      "Likelihood": "Paroaria gularis",
+      "CVSSSeverity": null,
+      "Risk": null,
+      "ComponentName": "Cardinal, red-capped"
+    },
+    {
+      "CVEID": "35356-666",
+      "Impact": null,
+      "Likelihood": "Macaca fuscata",
+      "CVSSSeverity": 3,
+      "Risk": 7,
+      "ComponentName": "Macaque, japanese"
+    },
+    {
+      "CVEID": "0268-0193",
+      "Impact": "ÅÍÎÏ˝ÓÔÒÚÆ☃",
+      "Likelihood": "Francolinus swainsonii",
+      "CVSSSeverity": 2,
+      "Risk": 0,
+      "ComponentName": "Francolin, swainson's"
+    },
+    {
+      "CVEID": "55154-0661",
+      "Impact": null,
+      "Likelihood": "Eolophus roseicapillus",
+      "CVSSSeverity": 3,
+      "Risk": 0,
+      "ComponentName": "Cockatoo, red-breasted"
+    },
+    {
+      "CVEID": "0573-1961",
+      "Impact": "1E02",
+      "Likelihood": "Perameles nasuta",
+      "CVSSSeverity": 8,
+      "Risk": 5,
+      "ComponentName": "Long-nosed bandicoot"
+    },
+    {
+      "CVEID": "49967-390",
+      "Impact": "Z̮̞̠͙͔ͅḀ̗̞͈̻̗Ḷ͙͎̯̹̞͓G̻O̭̗̮",
+      "Likelihood": "Bubalus arnee",
+      "CVSSSeverity": 6,
+      "Risk": 5,
+      "ComponentName": "Wild water buffalo"
+    },
+    {
+      "CVEID": "13537-407",
+      "Impact": "｀ｨ(´∀｀∩",
+      "Likelihood": "Anhinga rufa",
+      "CVSSSeverity": 0,
+      "Risk": null,
+      "ComponentName": "African darter"
+    },
+    {
+      "CVEID": "52685-438",
+      "Impact": "⁦test⁧",
+      "Likelihood": "Crotalus adamanteus",
+      "CVSSSeverity": 1,
+      "Risk": null,
+      "ComponentName": "Eastern diamondback rattlesnake"
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import { useContext } from 'react';
 import { ThemeContext } from 'styled-components';
@@ -7,34 +8,31 @@ import { VulnerabilityViewColumn } from 'helpers/enums/dashboard';
 
 import CheckboxDropdownButton from 'components/CheckboxDropdownButton';
 
-const columnOptions = Object.keys(VulnerabilityViewColumn).filter((item) => {
-  return isNaN(Number(item));
-});
-
 interface ShowInfoAndExportProps {
-  shownColumns: VulnerabilityViewColumn[];
+  shownColumns: string[];
   setShownColumns: Function;
+  columnDropdown: string[];
 }
 
 const ShowInfoAndExport = ({
   shownColumns,
   setShownColumns,
+  columnDropdown,
 }: ShowInfoAndExportProps) => {
   const themeContext = useContext(ThemeContext);
 
   const exportDashboard = () => {
-    //CALL THE BACK END TO EXPORT THIS DASHBOARD - could make this an axios call instead?
     const exportEndpoint = 'export';
     console.log(
       'EXPORT ENDPOINT: ',
-      `${process.env.REACT_APP_SERVER_ENDPOINT}${exportEndpoint}`
+      `${process.env.REACT_APP_SERVER_ENDPOINT}/${exportEndpoint}`
     );
   };
 
   return (
     <Container>
       <CheckboxDropdownButton
-        checkboxOptions={columnOptions}
+        checkboxOptions={columnDropdown}
         checkedList={shownColumns}
         setCheckedList={setShownColumns}
       >

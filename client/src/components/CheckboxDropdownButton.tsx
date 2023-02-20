@@ -1,13 +1,13 @@
+import React from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
 import { Badge } from 'antd';
-import { VulnerabilityViewColumn, Risk } from 'helpers/enums/dashboard';
 
 import CheckboxList from 'components/CheckboxList';
 
 interface CheckboxDropdownButtonProps {
   checkboxOptions: string[];
-  checkedList: Risk[] | VulnerabilityViewColumn[];
+  checkedList: string[];
   setCheckedList: Function;
   children: JSX.Element;
 }
@@ -60,6 +60,7 @@ const Popup = styled.div<FilterByInterface>`
   z-index: 3;
   background-color: white;
   padding: 5px 20px 10px 10px;
+  min-width: 170px;
   height: auto;
   max-height: 350px;
   border-radius: 5px;

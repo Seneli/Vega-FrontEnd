@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -23,7 +24,7 @@ const StyledNavbar = styled.div`
   color: ${(props) => props.theme.colors.black};
   font-size: ${(props) => props.theme.fontSizes.small};
   font-family: ${(props) => props.theme.fonts.heading};
-  z-index: 1;
+  z-index: 1000;
   position: -webkit-sticky;
   position: sticky;
   top: 0;

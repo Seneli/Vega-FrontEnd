@@ -1,5 +1,7 @@
-import { ChangeEvent, MutableRefObject, useRef } from 'react';
+import React, { ChangeEvent, MutableRefObject, useRef } from 'react';
 import styled from 'styled-components';
+
+import { enumToString } from 'helpers/enums/enumToString';
 
 interface CheckboxListProps {
   checkboxOptions: string[];
@@ -54,7 +56,7 @@ const CheckboxList = ({
               ref.current[index] = element;
             }}
           />{' '}
-          {item}
+          {enumToString(item)}
         </label>
       ))}
       <label key={'Clear All'}>
