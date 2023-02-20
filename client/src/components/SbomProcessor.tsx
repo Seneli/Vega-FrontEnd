@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import styled, { ThemeContext } from 'styled-components';
 import LoadingSpin from 'react-loading-spin';
 
-import { SbomProcessingState } from 'helpers/enums/enums';
+import { SbomProcessingState } from 'helpers/constants/enums';
 
 interface SbomProcessorProps {
   loading: boolean;

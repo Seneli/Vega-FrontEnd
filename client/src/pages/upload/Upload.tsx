@@ -5,7 +5,7 @@ import axios from 'axios';
 import SbomProcessor from 'components/SbomProcessor';
 import CarouselBody from 'components/CarouselBody';
 import CarouselController from 'components/CarouselController';
-import { SbomProcessingState } from 'helpers/enums/enums';
+import { SbomProcessingState } from 'helpers/constants/enums';
 
 const Upload = () => {
   const [currentStep, setCurrentStep] = useState<number>(1);

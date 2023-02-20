@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { ThemeContext } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
-import { severitiesList } from 'helpers/enums/enumLists';
+import { severitiesList } from 'helpers/constants/enumLists';
 
 import CheckboxDropdownButton from 'components/CheckboxDropdownButton';
 

@@ -2,7 +2,7 @@ import {
   ComponentViewColumn,
   VulnerabilityViewColumn,
   Severity,
-} from 'helpers/enums/enums';
+} from 'helpers/constants/enums';
 
 const severitiesList: string[] = Object.keys(Severity).filter((item) => {
   return isNaN(Number(item));

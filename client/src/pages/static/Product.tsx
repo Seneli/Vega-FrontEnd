@@ -1,4 +1,4 @@
-import overview_content from 'static/text/product';
+import overview_content from 'helpers/staticContent/product';
 import styled from 'styled-components';
 
 const Product = () => {

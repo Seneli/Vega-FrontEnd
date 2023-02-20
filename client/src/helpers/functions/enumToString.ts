@@ -27,4 +27,4 @@ const enumToString = (enumStr: string): string => {
   }
 };
 
-export { enumToString };
+export default enumToString;
