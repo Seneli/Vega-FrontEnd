@@ -7,7 +7,7 @@ import { severitiesList } from 'helpers/constants/enumLists';
 
 import CheckboxDropdownButton from 'components/CheckboxDropdownButton';
 
-interface SearchAndFilterProps {
+interface FilterProps {
   riskFilters: string[];
   setRiskFilters: Function;
   impactFilters: string[];
@@ -16,14 +16,14 @@ interface SearchAndFilterProps {
   setSearchBy: any;
 }
 
-const SearchAndFilter = ({
+const Filters = ({
   impactFilters,
   setImpactFilters,
   riskFilters,
   setRiskFilters,
   searchBy,
   setSearchBy,
-}: SearchAndFilterProps) => {
+}: FilterProps) => {
   const themeContext = useContext(ThemeContext);
   return (
     <Container>
@@ -113,4 +113,4 @@ const DropdownButton = styled.button<DropdownButtonProps>`
   }
 `;
 
-export default SearchAndFilter;
+export default Filters;

@@ -15,11 +15,11 @@ import {
   EmptyDataInterface,
 } from 'helpers/constants/dashboardInterfaces';
 
-import QuickStats from 'components/QuickStats';
-import ViewButtons from 'components/ViewButtons';
-import SearchAndFilterBar from 'components/SearchAndFilter';
-import ShowInfoAndExport from 'components/ShowInfoAndExport';
-import PaginatedTable from 'components/PaginatedTable';
+import QuickStats from 'pages/dashboard/sections/QuickStats';
+import ViewButtons from 'pages/dashboard/sections/ViewButtons';
+import SearchAndFilterBar from 'pages/dashboard/sections/Filters';
+import ShowInfoAndExport from 'pages/dashboard/sections/ShowInfoAndExport';
+import PaginatedTable from 'pages/dashboard/sections/PaginatedTable';
 
 const Dashboard = () => {
   const themeContext = useContext(ThemeContext);
