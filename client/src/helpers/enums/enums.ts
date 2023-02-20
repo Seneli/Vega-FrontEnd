@@ -1,3 +1,11 @@
+enum SbomProcessingState {
+  Preupload = 'Pre-upload',
+  Upload = 'Upload',
+  Query = 'Query',
+  RiskAnalysis = 'Risk analysis',
+  Done = 'Done',
+}
+
 enum View {
   Component = 'Component',
   Vulnerability = 'Vulnerability',
@@ -27,4 +35,10 @@ enum VulnerabilityViewColumn {
   risk = 'risk',
 }
 
-export { View, ComponentViewColumn, VulnerabilityViewColumn, Severity };
+export {
+  SbomProcessingState,
+  View,
+  ComponentViewColumn,
+  VulnerabilityViewColumn,
+  Severity,
+};

@@ -5,7 +5,7 @@ import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 import VulnerabilityViewRow from 'components/rows/VulnerabilityViewRow';
 import ComponentViewRow from 'components/rows/ComponentViewRow';
-import { View } from 'helpers/enums/dashboard';
+import { View } from 'helpers/enums/enums';
 import { usePagination } from 'helpers/hooks/usePagination';
 import { enumToString } from 'helpers/enums/enumToString';
 

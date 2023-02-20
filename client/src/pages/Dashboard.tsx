@@ -3,7 +3,7 @@ import styled, { ThemeContext } from 'styled-components';
 import axios from 'axios';
 import LoadingSpin from 'react-loading-spin';
 
-import { View, VulnerabilityViewColumn } from 'helpers/enums/dashboard';
+import { View, VulnerabilityViewColumn } from 'helpers/enums/enums';
 import {
   severitiesList,
   componentColumnList,

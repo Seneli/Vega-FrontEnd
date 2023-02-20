@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Button } from 'antd';
-import { View } from 'helpers/enums/dashboard';
+import { View } from 'helpers/enums/enums';
 import {
   vulnerabilityColumnList,
   componentColumnList,

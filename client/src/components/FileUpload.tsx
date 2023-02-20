@@ -1,17 +1,26 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import { SbomProcessingState } from 'helpers/enums/enums';
 
 interface FileUploadProps {
   format: string | undefined;
   fileType: string | undefined;
+  setLoading: Function;
+  setSbomProcessingState: Function;
 }
 
-const FileUpload = ({ format, fileType }: FileUploadProps) => {
+const FileUpload = ({
+  format,
+  fileType,
+  setLoading,
+  setSbomProcessingState,
+}: FileUploadProps) => {
   const [uploadStateMessage, setUploadStateMessage] = useState<string>('');
   const [submitMessage, setSubmitMessage] = useState<string>('');
   const [file, setFile] = useState();
   const [fileFormat, setFileFormat] = useState<number>(-1);
+  const [error, setError] = useState<boolean>(false);
 
   const updateFileFormat = (format: string, fileType: string) => {
     if (format === 'SPDX' && fileType === 'JSON') {
@@ -70,31 +79,42 @@ const FileUpload = ({ format, fileType }: FileUploadProps) => {
     e.preventDefault();
     if (!file) {
       setSubmitMessage('You have not entered a file to submit.');
+      setError(true);
       return;
     }
+    setLoading(true);
     sessionStorage.setItem('sessionID', generateSessionID(0, 1000));
     const queryParams = {
       format: fileFormat,
       sessionID: sessionStorage.getItem('sessionID'),
     };
-    console.log(queryParams);
     const formData = new FormData();
     formData.append('sbom', file);
     axios
-      .post(`${process.env.REACT_APP_SERVER_ENDPOINT}/upload`, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-        params: queryParams,
-      })
-      .then(() => {
+      .post(
+        `${process.env.REACT_APP_SERVER_ENDPOINT}/upload`,
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+          params: queryParams,
+        }
+      )
+      .then((response) => {
+        console.log(response);
         setSubmitMessage('Upload Complete.');
+        setLoading(false);
+        setSbomProcessingState(SbomProcessingState.Upload);
+        setError(true);
       })
       .catch((error: any) => {
         console.log(error);
+        setError(true);
         setSubmitMessage(
           `Upload Incomplete. Request failed due to: ${error.message}`
         );
+        setLoading(false);
       });
   };
 
@@ -107,10 +127,18 @@ const FileUpload = ({ format, fileType }: FileUploadProps) => {
       <p>{uploadStateMessage}</p>
       <FileInput onChange={onChange} />
       <Button />
-      <p>{submitMessage}</p>
+      <SubmitMessage error={error}>{submitMessage}</SubmitMessage>
     </form>
   );
 };
+
+interface SubmitMessageProps {
+  error: boolean;
+}
+
+const SubmitMessage = styled.p<SubmitMessageProps>`
+  color: ${(props) => (props.error ? props.theme.colors.primaryPink : 'black')};
+`;
 
 const FileInput = styled.input.attrs({
   type: 'file',
