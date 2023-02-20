@@ -1,7 +1,5 @@
-import Home from 'pages/Home';
-import About from 'pages/About';
-import Product from 'pages/Product';
-import Upload from 'pages/Upload';
-import Dashboard from 'pages/Dashboard';
+import { About, Home, Product } from './static';
+import Upload from './upload';
+import Dashboard from './dashboard';
 
 export { Home, About, Product, Upload, Dashboard };
