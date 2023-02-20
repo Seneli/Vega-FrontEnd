@@ -14,7 +14,7 @@ import PaginationController from './PaginationController';
 interface PaginatedTableProps {
   view: View;
   setSortBy: Function;
-  shownColumns: string[]; //VulnerabilityViewColumn[] | ComponentViewColumn[];
+  shownColumns: string[];
   currentPage: number;
   setCurrentPage: Function;
   data: any;

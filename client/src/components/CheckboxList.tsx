@@ -59,10 +59,10 @@ const CheckboxList = ({
           {enumToString(item)}
         </label>
       ))}
-      <label key={'Clear All'}>
+      {/* <label key={'Clear All'}>
         <input type='checkbox' name='lang' onChange={clearAll} />
         Clear All
-      </label>
+      </label> */}
     </Container>
   );
 };
