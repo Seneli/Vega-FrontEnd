@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 import styled from 'styled-components';
-import QuickStat from 'pages/dashboard/sections/QuickStat';
+import QuickStat from './QuickStat';
 
 interface QuickStatsProps {
   stats: {

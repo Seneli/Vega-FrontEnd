@@ -3,11 +3,9 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
 
-import {
-  ComponentViewRow,
-  VulnerabilityViewRow,
-  PaginationController,
-} from './paginatedTableHelpers';
+import ComponentViewRow from './ComponentViewRow';
+import VulnerabilityViewRow from './VulnerabilityViewRow';
+import PaginationController from './PaginationController';
 import { View } from 'helpers/constants/enums';
 import usePagination from 'helpers/functions/usePagination';
 import enumToString from 'helpers/functions/enumToString';

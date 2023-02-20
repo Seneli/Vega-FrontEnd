@@ -7,7 +7,7 @@ import { severitiesList } from 'helpers/constants/enumLists';
 
 import CheckboxDropdownButton from 'components/CheckboxDropdownButton';
 
-interface FilterProps {
+interface SeverityFiltersProps {
   riskFilters: string[];
   setRiskFilters: Function;
   impactFilters: string[];
@@ -16,14 +16,14 @@ interface FilterProps {
   setSearchBy: any;
 }
 
-const Filters = ({
+const SeverityFilters = ({
   impactFilters,
   setImpactFilters,
   riskFilters,
   setRiskFilters,
   searchBy,
   setSearchBy,
-}: FilterProps) => {
+}: SeverityFiltersProps) => {
   const themeContext = useContext(ThemeContext);
   return (
     <Container>
@@ -73,22 +73,22 @@ const Container = styled.div`
   flex-wrap: wrap;
 `;
 
-const SearchContainer = styled.div`
-  border: 2px solid lightgray;
-  padding: 0 8px;
-  border-radius: 7px;
-  height: 35px;
-  width: 300px;
-`;
+// const SearchContainer = styled.div`
+//   border: 2px solid lightgray;
+//   padding: 0 8px;
+//   border-radius: 7px;
+//   height: 35px;
+//   width: 300px;
+// `;
 
-const SearchInput = styled.input`
-  border: none;
-  padding: 10px;
-  width: 260px;
-  &:focus {
-    outline: none;
-  }
-`;
+// const SearchInput = styled.input`
+//   border: none;
+//   padding: 10px;
+//   width: 260px;
+//   &:focus {
+//     outline: none;
+//   }
+// `;
 
 interface DropdownButtonProps {
   color: string;
@@ -113,4 +113,4 @@ const DropdownButton = styled.button<DropdownButtonProps>`
   }
 `;
 
-export default Filters;
+export default SeverityFilters;

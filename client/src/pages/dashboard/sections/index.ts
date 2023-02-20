@@ -1,13 +1,13 @@
-import QuickStats from './QuickStats';
+import QuickStats from './quickStats';
 import ViewButtons from './ViewButtons';
-import SearchAndFilter from './Filters';
+import SeverityFilters from './SeverityFilters';
 import ShowInfoAndExport from './ShowInfoAndExport';
-import PaginatedTable from './PaginatedTable';
+import PaginatedTable from './paginatedTable';
 
 export {
   QuickStats,
   ViewButtons,
-  SearchAndFilter,
+  SeverityFilters,
   ShowInfoAndExport,
   PaginatedTable,
 };

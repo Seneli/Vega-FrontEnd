@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { useContext } from 'react';
 import { ThemeContext } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';

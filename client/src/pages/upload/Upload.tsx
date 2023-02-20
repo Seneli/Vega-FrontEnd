@@ -2,9 +2,7 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
-import SbomProcessor from 'components/SbomProcessor';
-import CarouselBody from 'components/CarouselBody';
-import CarouselController from 'components/CarouselController';
+import { SbomProcessor, CarouselBody, CarouselController} from './components';
 import { SbomProcessingState } from 'helpers/constants/enums';
 
 const Upload = () => {
