@@ -4,7 +4,6 @@ import { useContext } from 'react';
 import { ThemeContext } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
-import { VulnerabilityViewColumn } from 'helpers/enums/enums';
 
 import CheckboxDropdownButton from 'components/CheckboxDropdownButton';
 

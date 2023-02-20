@@ -18,21 +18,21 @@ enum Severity {
   Critical = 'CRITICAL',
 }
 
-enum ComponentViewColumn { // Numbered so we can sort them if needed
-  Component_Name,
-  Component_Ref,
-  Consolidated_Risk,
-  Highest_Risk,
-  Number_of_Vulnerabilities,
+enum ComponentViewColumn {
+  Component_Name = 'Component_Name',
+  Component_Ref = 'Component_Ref',
+  Consolidated_Risk = 'Consolidated_Risk',
+  Highest_Risk = 'Highest_Risk',
+  Number_of_Vulnerabilities = 'Number_of_Vulnerabilities',
 }
 
-enum VulnerabilityViewColumn { // Numbered so we can sort them if needed
-  cveId,
-  cvss2,
-  impact,
-  likelihood,
-  packageRef,
-  risk,
+enum VulnerabilityViewColumn {
+  cveId = 'cveId',
+  cvss2 = 'cvss2',
+  impact = 'impact',
+  likelihood = 'likelihood',
+  packageRef = 'packageRef',
+  risk = 'risk',
 }
 
 export {

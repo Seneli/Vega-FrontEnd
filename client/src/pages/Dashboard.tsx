@@ -7,7 +7,8 @@ import { View, VulnerabilityViewColumn } from 'helpers/enums/enums';
 import {
   severitiesList,
   componentColumnList,
-  vulnerabilityColumnList,
+  removableComponentsColumnList,
+  removableVulnerabilitiesColumnList,
 } from 'helpers/enums/enumLists';
 import {
   type DataInterface,
@@ -35,8 +36,9 @@ const Dashboard = () => {
   const [dashboardContent, setDashboardContent] =
     useState<DataInterface>(EmptyDataInterface);
   const [loading, setLoading] = useState(false);
-  const [columnDropdown, setColumnDropdown] =
-    useState<string[]>(componentColumnList);
+  const [columnDropdown, setColumnDropdown] = useState<string[]>(
+    removableComponentsColumnList
+  );
 
   useEffect(() => {
     // RESEND THE REQUEST FROM THE DASHBOARD EVERY RENDER
@@ -59,9 +61,9 @@ const Dashboard = () => {
           setLoading(false);
           setDashboardContent(response.data);
           if (view === View.Component) {
-            setColumnDropdown(componentColumnList);
+            setColumnDropdown(removableComponentsColumnList);
           } else {
-            setColumnDropdown(vulnerabilityColumnList);
+            setColumnDropdown(removableVulnerabilitiesColumnList);
           }
         },
         (error) => {
