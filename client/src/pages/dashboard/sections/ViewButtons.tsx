@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Button } from 'antd';
-import { View } from 'helpers/enums/enums';
+
+import { View } from 'helpers/constants/enums';
 import {
   vulnerabilityColumnList,
   componentColumnList,
-} from 'helpers/enums/enumLists';
+} from 'helpers/constants/enumLists';
 
 interface ViewButtonsProps {
   view: View;

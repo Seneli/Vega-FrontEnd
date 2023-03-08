@@ -3,23 +3,25 @@ import styled, { ThemeContext } from 'styled-components';
 import axios from 'axios';
 import LoadingSpin from 'react-loading-spin';
 
-import { View, VulnerabilityViewColumn } from 'helpers/enums/enums';
+import {
+  QuickStats,
+  ViewButtons,
+  SeverityFilters,
+  ShowInfoAndExport,
+  PaginatedTable,
+} from './sections';
+
+import { View, VulnerabilityViewColumn } from 'helpers/constants/enums';
 import {
   severitiesList,
   componentColumnList,
   removableComponentsColumnList,
   removableVulnerabilitiesColumnList,
-} from 'helpers/enums/enumLists';
+} from 'helpers/constants/enumLists';
 import {
   type DataInterface,
   EmptyDataInterface,
-} from 'helpers/enums/DataInterface';
-
-import QuickStats from 'components/QuickStats';
-import ViewButtons from 'components/ViewButtons';
-import SearchAndFilterBar from 'components/SearchAndFilter';
-import ShowInfoAndExport from 'components/ShowInfoAndExport';
-import PaginatedTable from 'components/PaginatedTable';
+} from 'helpers/constants/dashboardInterfaces';
 
 const Dashboard = () => {
   const themeContext = useContext(ThemeContext);
@@ -97,7 +99,7 @@ const Dashboard = () => {
             shownColumns={shownColumns}
             setShownColumns={setShownColumns}
           />
-          <SearchAndFilterBar
+          <SeverityFilters
             riskFilters={riskFilters}
             setRiskFilters={setRiskFilters}
             impactFilters={impactFilters}

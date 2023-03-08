@@ -1,7 +1,7 @@
 import React, { ChangeEvent, MutableRefObject, useRef } from 'react';
 import styled from 'styled-components';
 
-import { enumToString } from 'helpers/enums/enumToString';
+import enumToString from 'helpers/functions/enumToString';
 
 interface CheckboxListProps {
   checkboxOptions: string[];

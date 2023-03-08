@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import { SbomProcessingState } from 'helpers/enums/enums';
+
+import { SbomProcessingState } from 'helpers/constants/enums';
 
 interface FileUploadProps {
   format: string | undefined;
@@ -91,16 +92,12 @@ const FileUpload = ({
     const formData = new FormData();
     formData.append('sbom', file);
     axios
-      .post(
-        `${process.env.REACT_APP_SERVER_ENDPOINT}/upload`,
-        formData,
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-          params: queryParams,
-        }
-      )
+      .post(`${process.env.REACT_APP_SERVER_ENDPOINT}/upload`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+        params: queryParams,
+      })
       .then((response) => {
         console.log(response);
         setSubmitMessage('Upload Complete.');

@@ -3,13 +3,12 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
 
-import VulnerabilityViewRow from 'components/rows/VulnerabilityViewRow';
-import ComponentViewRow from 'components/rows/ComponentViewRow';
-import { View } from 'helpers/enums/enums';
-import { usePagination } from 'helpers/hooks/usePagination';
-import { enumToString } from 'helpers/enums/enumToString';
-
+import ComponentViewRow from './ComponentViewRow';
+import VulnerabilityViewRow from './VulnerabilityViewRow';
 import PaginationController from './PaginationController';
+import { View } from 'helpers/constants/enums';
+import usePagination from 'helpers/functions/usePagination';
+import enumToString from 'helpers/functions/enumToString';
 
 interface PaginatedTableProps {
   view: View;

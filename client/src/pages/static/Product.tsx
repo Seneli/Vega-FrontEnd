@@ -1,11 +1,11 @@
-import about_content from 'static/text/about';
+import overview_content from 'helpers/staticContent/product';
 import styled from 'styled-components';
 
-const About = () => {
+const Product = () => {
   return (
     <>
-      <PageHeader>About Vega</PageHeader>
-      {about_content.map((content, index) => {
+      <PageHeader>Product Overview</PageHeader>
+      {overview_content.map((content, index) => {
         return (
           <PageBody>
             <Subtitle>{content.title}</Subtitle>
@@ -44,4 +44,4 @@ const Paragraph = styled.p`
   line-height: 20px;
 `;
 
-export default About;
+export default Product;

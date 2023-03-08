@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import { vulnerabilityColumnList } from 'helpers/enums/enumLists';
-import { enumToString } from 'helpers/enums/enumToString';
+import { vulnerabilityColumnList } from 'helpers/constants/enumLists';
+import enumToString from 'helpers/functions/enumToString';
 import DropdownVulnerabilityViewRow from './DropdownVulnerabilityViewRow';
 
 interface ComponentViewRowProps {
