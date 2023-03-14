@@ -4,7 +4,7 @@ import Theme from 'Theme';
 import { createGlobalStyle } from 'styled-components';
 import { Home, About, Product, Upload, Dashboard } from 'pages';
 
-const routes = [Home, About, Product, Upload, Dashboard];
+const routes = [Upload, Dashboard, About, Product];
 
 function App() {
   return (
