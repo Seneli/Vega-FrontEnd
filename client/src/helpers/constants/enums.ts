@@ -33,6 +33,7 @@ enum VulnerabilityViewColumn {
   likelihood = 'likelihood',
   packageRef = 'packageRef',
   risk = 'risk',
+  severity = "severity"
 }
 
 export {
