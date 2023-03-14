@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { ThemeContext } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
+import axios from 'axios';
+import fileDownload from 'js-file-download'
 
 import CheckboxDropdownButton from 'components/CheckboxDropdownButton';
 
@@ -25,6 +27,22 @@ const ShowInfoAndExport = ({
       'EXPORT ENDPOINT: ',
       `${process.env.REACT_APP_SERVER_ENDPOINT}/${exportEndpoint}`
     );
+    const queryParams = {
+      sessionId: sessionStorage.getItem('sessionID'),
+    };
+    axios
+      .get(`${process.env.REACT_APP_SERVER_ENDPOINT}/export`, {
+        params: queryParams,
+      })
+      .then(
+        (response) => {
+          console.log(response.data);
+          fileDownload(JSON.stringify(response.data, null, 2), "vega_report.json")
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   };
 
   return (

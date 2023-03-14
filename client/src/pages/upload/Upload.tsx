@@ -27,7 +27,7 @@ const Upload = () => {
     if (sbomProcessingState === SbomProcessingState.Upload) {
       setLoading(true);
       const queryParams = {
-        sessionID: sessionStorage.getItem('sessionID'),
+        sessionId: sessionStorage.getItem('sessionID'),
       };
       axios
         .get(`${process.env.REACT_APP_SERVER_ENDPOINT}/query`, {
@@ -48,7 +48,7 @@ const Upload = () => {
     } else if (sbomProcessingState === SbomProcessingState.RiskAnalysis) {
       setLoading(true);
       const queryParams = {
-        sessionID: sessionStorage.getItem('sessionID'),
+        sessionId: sessionStorage.getItem('sessionID'),
       };
       axios
         .get(`${process.env.REACT_APP_SERVER_ENDPOINT}/riskanalysis`, {
@@ -58,7 +58,7 @@ const Upload = () => {
           console.log(response);
           setSbomProcessingState(SbomProcessingState.Done);
           setLoading(false);
-          window.open('/dashboard');
+          window.open('/dashboard', "_self");
         })
         .catch((error: any) => {
           console.log(error);

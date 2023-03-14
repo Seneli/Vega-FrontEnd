@@ -57,7 +57,7 @@ const SeverityFilters = ({
         setCheckedList={setImpactFilters}
       >
         <DropdownButton color={themeContext.colors.minor}>
-          Filter By Impact
+          Filter By Severity
           <FontAwesomeIcon icon={icon({ name: 'angle-down' })} />
         </DropdownButton>
       </CheckboxDropdownButton>

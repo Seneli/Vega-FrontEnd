@@ -46,7 +46,7 @@ const Dashboard = () => {
     // RESEND THE REQUEST FROM THE DASHBOARD EVERY RENDER
     setLoading(true);
     const queryParams = {
-      sessionId: 27,
+      sessionId: sessionStorage.getItem('sessionID'),
       view: view,
       riskFilters: riskFilters,
       severityFilters: impactFilters,

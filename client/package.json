@@ -14,7 +14,6 @@
     "@types/node": "^16.18.10",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.9",
-    "axios": "^1.2.6",
     "antd": "^5.1.2",
     "axios": "^1.2.6",
     "babel-plugin-macros": "^3.1.0",
@@ -56,6 +55,7 @@
     "@svgr/webpack": "^6.5.1",
     "@types/react-transition-group": "^4.4.5",
     "@types/styled-components": "^5.1.26",
+    "js-file-download": "^0.4.12",
     "prettier": "2.8.1",
     "react-scripts": "^5.0.1"
   },

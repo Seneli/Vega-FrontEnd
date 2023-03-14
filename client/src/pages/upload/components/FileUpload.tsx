@@ -87,7 +87,7 @@ const FileUpload = ({
     sessionStorage.setItem('sessionID', generateSessionID(0, 1000));
     const queryParams = {
       format: fileFormat,
-      sessionID: sessionStorage.getItem('sessionID'),
+      sessionId: sessionStorage.getItem('sessionID'),
     };
     const formData = new FormData();
     formData.append('sbom', file);
