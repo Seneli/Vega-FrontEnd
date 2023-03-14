@@ -8,7 +8,7 @@ interface NavbarProps {
 
 const Navbar = ({ links }: NavbarProps) => (
   <StyledNavbar>
-    <NavbarLogo>*insert logo* Vega</NavbarLogo>
+    <NavbarLogo><img src={window.location.origin + "/PinkLogo.png"} height="60"/></NavbarLogo>
     <StyledNavbarList>
       {links.map((link) => (
         <StyledNavbarLink key={`l-${link}`}>
@@ -22,13 +22,13 @@ const Navbar = ({ links }: NavbarProps) => (
 const StyledNavbar = styled.div`
   background-color: ${(props) => props.theme.colors.backgroundGrey};
   color: ${(props) => props.theme.colors.black};
-  font-size: ${(props) => props.theme.fontSizes.small};
+  font-size: ${(props) => props.theme.fontSizes.medium};
   font-family: ${(props) => props.theme.fonts.heading};
   z-index: 1000;
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  padding: 20px 100px;
+  padding: 40px 100px 20px 100px;
   margin: auto;
   display: flex;
   flex-direction: row;
