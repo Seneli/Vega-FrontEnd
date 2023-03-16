@@ -4,7 +4,7 @@ import Theme from 'Theme';
 import { createGlobalStyle } from 'styled-components';
 import { Home, About, Product, Upload, Dashboard } from 'pages';
 
-const routes = [Home, About, Product, Upload, Dashboard];
+const routes = [Upload, Dashboard, About, Product];
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
       <Router>
         <Navbar links={routes.map(({ name }) => name)} />
         <Routes>
-          <Route path='/' element={<Home />} />
+          <Route path='/' element={<Upload />}/>
           <Route path='/about' element={<About />} />
           <Route path='/product' element={<Product />} />
           <Route path='/upload' element={<Upload />} />

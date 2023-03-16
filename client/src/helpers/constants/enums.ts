@@ -12,10 +12,10 @@ enum View {
 }
 
 enum Severity {
-  Low = 'LOW',
-  Medium = 'MEDIUM',
-  High = 'HIGH',
-  Critical = 'CRITICAL',
+  LOW = 'LOW',
+  MEDIUM = 'MEDIUM',
+  HIGH = 'HIGH',
+  CRITICAL = 'CRITICAL',
 }
 
 enum ComponentViewColumn {
@@ -33,6 +33,7 @@ enum VulnerabilityViewColumn {
   likelihood = 'likelihood',
   packageRef = 'packageRef',
   risk = 'risk',
+  severity = "severity"
 }
 
 export {
