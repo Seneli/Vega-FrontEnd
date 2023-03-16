@@ -64,6 +64,7 @@ const Dashboard = () => {
           setDashboardContent(response.data);
           if (view === View.Component) {
             setColumnDropdown(removableComponentsColumnList);
+
           } else {
             setColumnDropdown(removableVulnerabilitiesColumnList);
           }
@@ -74,7 +75,6 @@ const Dashboard = () => {
         }
       );
   }, [view, sortBy, riskFilters, impactFilters, currentPage]);
-
   return (
     <>
       <Loading loading={loading}>
@@ -120,6 +120,8 @@ const Dashboard = () => {
             data={dashboardContent.data}
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
+            totalCVEs={dashboardContent.stats.Vulnerabilities_Identified}
+            totalComponents={dashboardContent.stats.Components_Detected}
           />
         </DashboardGrid>
       </PageBody>

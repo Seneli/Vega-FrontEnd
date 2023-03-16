@@ -17,6 +17,8 @@ interface PaginatedTableProps {
   currentPage: number;
   setCurrentPage: Function;
   data: any;
+  totalCVEs: number;
+  totalComponents: number;
 }
 
 const PaginatedTable = ({
@@ -26,14 +28,18 @@ const PaginatedTable = ({
   currentPage,
   setCurrentPage,
   data,
+  totalCVEs,
+  totalComponents
 }: PaginatedTableProps) => {
   const pageSize: number = 25;
   const siblingCount: number = 1;
-  const totalCount: number = data.length;
-
+  let totalCount: number = totalCVEs;//default
+  if(view == View.Component ){
+    totalCount = totalComponents;
+  }
   const paginationRange: number[] = usePagination({
     currentPage,
-    totalCount,
+  totalCount,
     siblingCount,
     pageSize,
   });
