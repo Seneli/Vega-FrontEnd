@@ -28,7 +28,6 @@ const StyledNavbar = styled.div`
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  padding: 30px 100px 20px 100px;
   margin: auto;
   display: flex;
   flex-direction: row;
@@ -38,13 +37,15 @@ const StyledNavbar = styled.div`
 const NavbarLogo = styled.img`
   color: ${(props) => props.theme.colors.insignificant};
   font-weight: bold;
-  height: 30px;
+  height: 60px;
+  padding: 10px 100px 10px 100px;
 `;
 
 const StyledNavbarList = styled.div`
   display: flex;
   flex-direction: row;
   gap: 3vw;
+  padding: 30px 100px 20px 100px;
 `;
 
 const StyledNavbarLink = styled.div`
