@@ -4,6 +4,7 @@ import { ThemeContext } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { severitiesList } from 'helpers/constants/enumLists';
+import { View } from 'helpers/constants/enums';
 
 import CheckboxDropdownButton from 'components/CheckboxDropdownButton';
 
@@ -14,6 +15,7 @@ interface SeverityFiltersProps {
   setImpactFilters: Function;
   searchBy: string;
   setSearchBy: any;
+  view: View;
 }
 
 const SeverityFilters = ({
@@ -23,6 +25,7 @@ const SeverityFilters = ({
   setRiskFilters,
   searchBy,
   setSearchBy,
+  view,
 }: SeverityFiltersProps) => {
   const themeContext = useContext(ThemeContext);
   return (
@@ -39,7 +42,6 @@ const SeverityFilters = ({
           }}
         />
       </SearchContainer> */}
-
       <CheckboxDropdownButton
         checkboxOptions={severitiesList}
         checkedList={riskFilters}
@@ -50,17 +52,18 @@ const SeverityFilters = ({
           <FontAwesomeIcon icon={icon({ name: 'angle-down' })} />
         </DropdownButton>
       </CheckboxDropdownButton>
-
-      <CheckboxDropdownButton
-        checkboxOptions={severitiesList}
-        checkedList={impactFilters}
-        setCheckedList={setImpactFilters}
-      >
-        <DropdownButton color={themeContext.colors.minor}>
-          Filter By Severity
-          <FontAwesomeIcon icon={icon({ name: 'angle-down' })} />
-        </DropdownButton>
-      </CheckboxDropdownButton>
+      {view === View.Vulnerability && (
+        <CheckboxDropdownButton
+          checkboxOptions={severitiesList}
+          checkedList={impactFilters}
+          setCheckedList={setImpactFilters}
+        >
+          <DropdownButton color={themeContext.colors.minor}>
+            Filter By Severity
+            <FontAwesomeIcon icon={icon({ name: 'angle-down' })} />
+          </DropdownButton>
+        </CheckboxDropdownButton>
+      )}
     </Container>
   );
 };

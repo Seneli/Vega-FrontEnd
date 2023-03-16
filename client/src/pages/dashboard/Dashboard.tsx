@@ -106,6 +106,7 @@ const Dashboard = () => {
             setImpactFilters={setImpactFilters}
             searchBy={searchBy}
             setSearchBy={setSearchBy}
+            view={view}
           />
           <ShowInfoAndExport
             shownColumns={shownColumns}
