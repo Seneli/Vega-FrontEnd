@@ -21,7 +21,7 @@ const theme = {
   },
   fontSizes: {
     small: '1em',
-    medium: '2em',
+    medium: '1.5em',
     large: '3em',
   },
   viewport: {

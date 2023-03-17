@@ -29,17 +29,17 @@ const PaginatedTable = ({
   setCurrentPage,
   data,
   totalCVEs,
-  totalComponents
+  totalComponents,
 }: PaginatedTableProps) => {
   const pageSize: number = 25;
   const siblingCount: number = 1;
-  let totalCount: number = totalCVEs;//default
-  if(view == View.Component ){
+  let totalCount: number = totalCVEs; //default
+  if (view === View.Component) {
     totalCount = totalComponents;
   }
   const paginationRange: number[] = usePagination({
     currentPage,
-  totalCount,
+    totalCount,
     siblingCount,
     pageSize,
   });

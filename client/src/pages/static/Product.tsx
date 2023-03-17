@@ -4,15 +4,19 @@ import styled from 'styled-components';
 const Product = () => {
   return (
     <>
-      <PageHeader>Product Overview</PageHeader>
-      {overview_content.map((content, index) => {
-        return (
-          <PageBody>
-            <Subtitle>{content.title}</Subtitle>
-            <Paragraph>{content.paragraph}</Paragraph>
-          </PageBody>
-        );
-      })}
+      <PageHeader>Product</PageHeader>
+      <PageBody>
+        {overview_content.map((content, index) => {
+          return (
+            <Section>
+              <Subtitle>{content.title}</Subtitle>
+              {content?.paragraphs?.map((paragraph, index) => {
+                return <Paragraph>{paragraph}</Paragraph>;
+              })}
+            </Section>
+          );
+        })}
+      </PageBody>
     </>
   );
 };
@@ -20,8 +24,8 @@ const Product = () => {
 const PageHeader = styled.h1`
   font-size: 80px;
   line-height: 84px;
-  margin: 0;
-  padding: 100px;
+  margin: 0px;
+  padding: 100px 130px;
   font-weight: 700;
   color: rgb(25, 25, 27);
   background-image: linear-gradient(
@@ -33,6 +37,17 @@ const PageHeader = styled.h1`
 
 const PageBody = styled.div`
   padding: 20px 100px 0 100px;
+`;
+
+const Section = styled.div`
+  margin-bottom: 20px;
+  padding: 30px;
+  background: linear-gradient(
+    147deg,
+    rgba(141, 141, 236, 0.17) 0%,
+    rgba(84, 84, 212, 0) 100%
+  );
+  border-radius: 15px;
 `;
 
 const Subtitle = styled.h2`
